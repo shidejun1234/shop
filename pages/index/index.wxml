@@ -19,6 +19,10 @@
         <image src='{{item.image}}'></image>
     </view>
 </view>
+<view style='text-align:center;margin-top:20rpx;'>
+    <text>品牌</text>
+    <view style='border-bottom:1px solid #000000;margin-top:10rpx;'></view>
+</view>
 <!-- 品牌推荐 -->
 <view class="brand-view">
     <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
@@ -28,6 +32,10 @@
     </scroll-view>
 </view>
 <!-- 店家推荐 -->
+<view style='text-align:center;margin-top:20rpx;'>
+    <text>店家推荐</text>
+    <view style='border-bottom:1px solid #000000;margin-top:10rpx;'></view>
+</view>
 <view class="scroll-view">
     <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
         <view id="demo1" class="scroll-view-item_H scroll-img" wx:for="{{scroll}}" wx:key="scroll">
@@ -35,7 +43,11 @@
         </view>
     </scroll-view>
 </view>
-<!-- 商品 -->
+<!-- 热门商品 -->
+<view style='text-align:center;margin-top:20rpx;'>
+    <text>热门商品</text>
+    <view style='border-bottom:1px solid #000000;margin-top:10rpx;'></view>
+</view>
 <view class='goods'>
     <view class='half' wx:for="{{goods}}" wx:key="goods">
         <navigator url="/pages/goods/goods?id={{item.id}}" hover-class="navigator-hover">
