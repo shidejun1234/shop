@@ -1,0 +1,48 @@
+<!-- 搜索 -->
+<view class='search'>
+    <input placeholder='请搜索商品'></input>
+    <image src='../../images/search.png'></image>
+</view>
+<!-- 顶部滚动条 -->
+<view class="swiper">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='width:100%;height:{{hig}}rpx;'>
+        <block wx:for="{{background}}" wx:key="this">
+            <swiper-item>
+                <image src='{{item}}' mode='widthFix' style='width:100%;' bindload='imageLoad'></image>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+<!-- 分类 -->
+<view class='category'>
+    <view class='category-item' wx:for="{{category}}" wx:key="category">
+        <image src='{{item.image}}'></image>
+    </view>
+</view>
+<!-- 品牌推荐 -->
+<view class="brand-view">
+    <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
+        <view id="demo1" class="scroll-view-item_H brand-img" wx:for="{{brand}}" wx:key="brand">
+            <image src='{{item.image}}'></image>
+        </view>
+    </scroll-view>
+</view>
+<!-- 店家推荐 -->
+<view class="scroll-view">
+    <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
+        <view id="demo1" class="scroll-view-item_H scroll-img" wx:for="{{scroll}}" wx:key="scroll">
+            <image src='{{item.image}}'></image>
+        </view>
+    </scroll-view>
+</view>
+<!-- 商品 -->
+<view class='goods'>
+    <view class='half' wx:for="{{goods}}" wx:key="goods">
+        <navigator url="/pages/goods/goods?id={{item.id}}" hover-class="navigator-hover">
+            <image src='{{item.goodsImage}}' mode='widthFix'></image>
+            <view>
+                <text>{{item.goodsName}}</text>
+            </view>
+        </navigator>
+    </view>
+</view>
