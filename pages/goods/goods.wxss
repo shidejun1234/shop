@@ -8,6 +8,13 @@
 
 .goods-title{
     background: #ffffff;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.goods-title-left{
+    width: 85%;
 }
 
 .goods-name{
@@ -23,10 +30,29 @@
 }
 
 .goods-oldPrice{
-    padding: 5rpx;
+    margin-left: 10rpx;
+    margin-top: 10rpx;
     color: #000000;
     font-size: 16rpx;
     text-decoration: line-through;
+}
+
+.goods-title-right{
+    width: 15%;
+    border-left: 1px solid #e5e5e5;
+}
+
+.goods-collect{
+    margin: 0 auto;
+    margin-top: 10rpx;
+    width: 50rpx;
+    font-size: 16rpx;
+    text-align: center;
+}
+
+.goods-collect image{
+    width: 50rpx;
+    height: 50rpx;
 }
 
 .goods-inventory-sales{

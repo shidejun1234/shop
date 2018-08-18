@@ -19,7 +19,7 @@
         <image src='{{item.image}}'></image>
     </view>
 </view>
-<view style='text-align:center;margin-top:20rpx;margin-bottom:5rpx;background:#ffffff;'>
+<view style='text-align:center;margin-top:5rpx;background:#ffffff;'>
     <text style='font-weight:bold;'>品牌</text>
     <view style='margin:0 auto;border-top:1px solid #000000;margin-top:10rpx;width:80%;'></view>
     <view style='margin:0 auto;border-top:1px solid #000000;margin-top:5rpx;width:75%;'></view>
@@ -34,7 +34,7 @@
     </scroll-view>
 </view>
 <!-- 店家推荐 -->
-<view style='text-align:center;margin-top:20rpx;margin-bottom:5rpx;background:#ffffff;'>
+<view style='text-align:center;margin-top:5rpx;background:#ffffff;'>
     <text style='font-weight:bold;'>店家推荐</text>
     <view style='margin:0 auto;border-top:1px solid #000000;margin-top:10rpx;width:80%;'></view>
     <view style='margin:0 auto;border-top:1px solid #000000;margin-top:5rpx;width:75%;'></view>
@@ -48,7 +48,7 @@
     </scroll-view>
 </view>
 <!-- 热门商品 -->
-<view style='text-align:center;margin-top:20rpx;margin-bottom:5rpx;background:#ffffff;'>
+<view style='text-align:center;margin-top:5rpx;background:#ffffff;'>
     <text style='font-weight:bold;'>热门商品</text>
     <view style='margin:0 auto;border-top:1px solid #000000;margin-top:10rpx;width:80%;'></view>
     <view style='margin:0 auto;border-top:1px solid #000000;margin-top:5rpx;width:75%;'></view>
@@ -57,7 +57,7 @@
 <view class='goods'>
     <view class='half' wx:for="{{goods}}" wx:key="goods">
         <navigator url="/pages/goods/goods?id={{item.id}}" hover-class="navigator-hover">
-            <image src='{{item.goodsImage}}' mode='widthFix'></image>
+            <image src='{{item.goodsImage}}'></image>
             <view>
                 <text>{{item.goodsName}}</text>
             </view>
@@ -68,9 +68,6 @@
             </view>
             <view class='goods-oldPrice'>
                 <text>￥{{item.oldPrice}}</text>
-            </view>
-            <view class='goods-add' bindtap='goodsAdd' data-goodsid='{{item.id}}'>
-                <image src='../../images/car.png'></image>
             </view>
         </view>
     </view>

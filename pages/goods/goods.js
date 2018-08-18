@@ -19,6 +19,7 @@ Page({
             'inventory':'45',
             'sales':'55'
         }],
+        isCollect:false,
         aaaa:"asdfasdfaf"
     },
 
@@ -28,6 +29,33 @@ Page({
         console.log(750 / (width / height));
         this.setData({
             hig: 750 / (width / height)
+        });
+    },
+
+    isCollect:function(){
+        this.setData({
+            isCollect: !this.data.isCollect
+        });
+        var title="取消收藏";
+        if (this.data.isCollect){
+            title="收藏成功"
+        }
+        wx.showToast({
+            title: title,
+            icon: 'success',
+            duration: 2000
+        })
+    },
+
+    call:function(){
+        wx.makePhoneCall({
+            phoneNumber: '13242657732',
+        });
+    },
+
+    car:function(){
+        wx.switchTab({
+            url: '../car/car',
         });
     },
 

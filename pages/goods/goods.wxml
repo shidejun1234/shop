@@ -10,15 +10,27 @@
 </view>
 <!-- 商品信息 -->
 <view class='goods-title'>
-    <view class='goods-name'>
-        <text>{{goods[0].goodsName}}</text>
-    </view>
-    <view class='goods-price'>
-        <view>
-            <text>￥{{goods[0].price}}</text>
+    <view class='goods-title-left'>
+        <view class='goods-name'>
+            <text>{{goods[0].goodsName}}</text>
         </view>
-        <view class='goods-oldPrice'>
-            <text>￥{{goods[0].oldPrice}}</text>
+        <view class='goods-price'>
+            <view>
+                <text>￥{{goods[0].price}}</text>
+            </view>
+            <view class='goods-oldPrice'>
+                <text>￥{{goods[0].oldPrice}}</text>
+            </view>
+        </view>
+    </view>
+    <view class='goods-title-right' bindtap='isCollect'>
+        <view class='goods-collect' wx:if="{{isCollect}}">
+            <image src='../../images/icon-aixin.png'></image>
+            <text>已收藏</text>
+        </view>
+        <view class='goods-collect' wx:else>
+            <image src='../../images/icon-aixin1.png'></image>
+            <text>收藏</text>
         </view>
     </view>
 </view>
@@ -33,12 +45,12 @@
 </view>
 <!-- 商品详情 -->
 <view class='goods-details'>
-    <view class='goods-details-item'>    商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情1234</view>
+    <view class='goods-details-item'> 商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情1234</view>
 </view>
 <!-- 底部菜单 -->
 <view class='goods-bottom'>
     <view class='goods-bottom-left'>
-        <view class='goods-bottom-left-item'>
+        <view class='goods-bottom-left-item' bindtap='call'>
             <image src='../../images/goods-call.png'></image>
             <text>电话</text>
         </view>
@@ -46,7 +58,7 @@
             <image src='../../images/goods-message.png'></image>
             <text>客服</text>
         </view>
-        <view class='goods-bottom-left-item'>
+        <view class='goods-bottom-left-item' bindtap='car'>
             <image src='../../images/goods-car.png'></image>
             <text>购物车</text>
         </view>

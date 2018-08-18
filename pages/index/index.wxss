@@ -103,6 +103,7 @@
 .goods{
     display: flex;
     width: 100%;
+    background: #ffffff;
     flex-direction: row;
     flex-wrap: wrap;
 }
@@ -113,6 +114,7 @@
     width: 46%;
     text-align: left;
     background: #ffffff;
+    border: 1px solid #e5e5e5;
 }
 
 .half text{
@@ -121,6 +123,7 @@
 
 .half image{
     width: 100%;
+    height: 300rpx;
 }
 
 .goods-price{
@@ -136,17 +139,7 @@
     color: #000000;
     font-size: 16rpx;
     text-decoration: line-through;
-}
-
-.goods-add{
-    margin-left: 40%;
-    width: 50rpx;
-    height: 50rpx;
-}
-
-.goods-add image{
-    width: 50rpx;
-    height: 50rpx;
+    padding-top: 10rpx;
 }
 
 .foot{
