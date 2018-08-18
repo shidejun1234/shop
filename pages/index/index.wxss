@@ -27,6 +27,14 @@
     width: 40rpx;
 }
 
+.swiper{
+    width: 100%;
+}
+
+.swiper image{
+    width: 100%;
+}
+
 .category{
     display: flex;
     flex-direction: row;
@@ -123,7 +131,7 @@
     font-size: 24rpx;
 }
 
-.goods-oldPress{
+.goods-oldPrice{
     padding: 5rpx;
     color: #000000;
     font-size: 16rpx;

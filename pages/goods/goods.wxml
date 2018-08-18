@@ -1,2 +1,62 @@
-<!--pages/goods/goods.wxml-->
-<text>pages/goods/goods.wxml</text>
+<!-- 顶部滚动条 -->
+<view class="swiper">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='width:100%;height:{{hig}}rpx;'>
+        <block wx:for="{{background}}" wx:key="this">
+            <swiper-item>
+                <image src='{{item}}' mode='widthFix' style='width:100%;' bindload='imageLoad'></image>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+<!-- 商品信息 -->
+<view class='goods-title'>
+    <view class='goods-name'>
+        <text>{{goods[0].goodsName}}</text>
+    </view>
+    <view class='goods-price'>
+        <view>
+            <text>￥{{goods[0].price}}</text>
+        </view>
+        <view class='goods-oldPrice'>
+            <text>￥{{goods[0].oldPrice}}</text>
+        </view>
+    </view>
+</view>
+<!-- 商品库存 -->
+<view class='goods-inventory-sales'>
+    <view>
+        <text>库存： {{goods[0].inventory}}</text>
+    </view>
+    <view>
+        <text>销量： {{goods[0].sales}}</text>
+    </view>
+</view>
+<!-- 商品详情 -->
+<view class='goods-details'>
+    <view class='goods-details-item'>    商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情1234</view>
+</view>
+<!-- 底部菜单 -->
+<view class='goods-bottom'>
+    <view class='goods-bottom-left'>
+        <view class='goods-bottom-left-item'>
+            <image src='../../images/goods-call.png'></image>
+            <text>电话</text>
+        </view>
+        <view class='goods-bottom-left-item'>
+            <image src='../../images/goods-message.png'></image>
+            <text>客服</text>
+        </view>
+        <view class='goods-bottom-left-item'>
+            <image src='../../images/goods-car.png'></image>
+            <text>购物车</text>
+        </view>
+    </view>
+    <view class='goods-bottom-right'>
+        <view class='goods-bottom-right-item yellow'>
+            <text>加入购物车</text>
+        </view>
+        <view class='goods-bottom-right-item red'>
+            <text>立即购买</text>
+        </view>
+    </view>
+</view>

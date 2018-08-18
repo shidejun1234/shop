@@ -1,12 +1,12 @@
 {
     "pages": [
-      "pages/index/index",
-      "pages/goods/goods"
+      "pages/goods/goods",
+      "pages/index/index"
     ],
     "window": {
       "navigationBarBackgroundColor": "#ffffff",
       "navigationBarTextStyle": "black",
-      "navigationBarTitleText": "小程序",
+      "navigationBarTitleText": "微商城",
       "backgroundColor": "#eeeeee",
       "backgroundTextStyle": "light",
       "enablePullDownRefresh": false
@@ -14,19 +14,29 @@
     "tabBar": {
       "list": [{
         "pagePath": "pages/index/index",
-        "text": "text1"
+        "text": "商城",
+        "iconPath": "images/index.png",
+        "selectedIconPath": "images/index_in.png"
       },{
         "pagePath": "pages/index/index",
-        "text": "text2"
+        "text": "分类",
+        "iconPath": "images/shop_cate.png",
+        "selectedIconPath": "images/shop_cate_in.png"
     },{
         "pagePath": "pages/index/index",
-        "text": "text3"
+        "text": "门店",
+        "iconPath": "images/shop.png",
+        "selectedIconPath": "images/shop_in.png"
     },{
         "pagePath": "pages/index/index",
-        "text": "text4"
+        "text": "购物车",
+        "iconPath": "images/shop_cart.png",
+        "selectedIconPath": "images/shop_cart_in.png"
     },{
         "pagePath": "pages/index/index",
-        "text": "text5"
+        "text": "我的",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user_in.png"
     }]
     }
 }
