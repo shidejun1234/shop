@@ -75,13 +75,27 @@
 }
 
 .goods-details-item{
-    margin: 1px 10rpx 90rpx 10rpx;
+    margin: 1px 10rpx;
+}
+
+.foot{
+    margin-top: 20rpx;
+    margin-bottom: 90rpx;
+    display: flex;
+    flex-direction: row;
+}
+
+.foot text{
+    margin: 0px auto;
+    font-size: 20rpx;
+    color: #5e5e5e;
 }
 
 .goods-bottom{
     width: 100%;
     height: 90rpx;
     position: fixed;
+    z-index: 88;
     bottom: 0px;
     display: flex;
     flex-direction: row;
@@ -122,6 +136,120 @@
 
 .goods-bottom-right-item{
     width: 50%;
+}
+
+.goods-addcar-buy{
+    position: fixed;
+    z-index: 95;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    opacity: 0.5;
+}
+
+.goods-addcar{
+    position: fixed;
+    z-index: 99;
+    bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #ffffff;
+}
+
+.goods-addcar-top{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.goods-addcar-top-left{
+    margin: 20rpx;
+    width: 20%;
+}
+
+.goods-addcar-top-left image{
+    width: 150rpx;
+    height: 150rpx;
+}
+
+.goods-addcar-top-right{
+    margin: 20rpx;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.goods-addcar-top-right-title{
+    margin-top: 20rpx;
+    font-size: 40rpx;
+}
+
+.goods-addcar-top-right-price{
+    margin-top: 20rpx;
+    font-size: 24rpx;
+    color: #ff0000;
+}
+
+.goods-addcar-bottom{
+    height: 80rpx;
+    line-height: 80rpx;
+    background: #e64240;
+    color: #ffffff;
+    text-align: center;
+}
+
+.goods-buy{
+    position: fixed;
+    z-index: 99;
+    bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #ffffff;
+}
+
+.goods-buy-top{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.goods-buy-top-left{
+    margin: 20rpx;
+    width: 20%;
+}
+
+.goods-buy-top-left image{
+    width: 150rpx;
+    height: 150rpx;
+}
+
+.goods-buy-top-right{
+    margin: 20rpx;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.goods-buy-top-right-title{
+    margin-top: 20rpx;
+    font-size: 40rpx;
+}
+
+.goods-buy-top-right-price{
+    margin-top: 20rpx;
+    font-size: 24rpx;
+    color: #ff0000;
+}
+
+.goods-buy-bottom{
+    height: 80rpx;
+    line-height: 80rpx;
+    background: #e64240;
+    color: #ffffff;
+    text-align: center;
 }
 
 .yellow{

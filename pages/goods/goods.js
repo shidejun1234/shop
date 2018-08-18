@@ -20,7 +20,10 @@ Page({
             'sales':'55'
         }],
         isCollect:false,
-        aaaa:"asdfasdfaf"
+        aaaa: "asdfasdfaf",
+        isaddcar: true,
+        isbuy:true,
+        isab:true
     },
 
     imageLoad: function(e) {
@@ -56,6 +59,28 @@ Page({
     car:function(){
         wx.switchTab({
             url: '../car/car',
+        });
+    },
+
+    addCar:function(){
+        this.setData({
+            isaddcar:false,
+            isab:false
+        });
+    },
+
+    buy: function () {
+        this.setData({
+            isbuy: false,
+            isab: false
+        });
+    },
+
+    hiddenab:function(){
+        this.setData({
+            isaddcar: true,
+            isbuy:true,
+            isab: true
         });
     },
 
