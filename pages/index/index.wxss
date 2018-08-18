@@ -3,15 +3,15 @@
     z-index: 99;
     top: 20rpx;
     display: flex;
-    width: 80%;
-    left: 10%;
+    width: 50%;
+    left: 25%;
 }
 
 .search input{   
-    border-radius: 24rpx;
-    width: 80%;
-    margin: 0 auto;
-    padding-left: 28rpx;
+    border-radius: 22rpx;
+    width: 100%;
+    padding-left: 20rpx;
+    padding-right: 75rpx;
     text-align: center;
     font-size: 25rpx;
     background: #e5e5e5;
@@ -21,8 +21,8 @@
 .search image{
     position: fixed;
     z-index: 99;
-    top: 28rpx;
-    right: 20%;
+    top: 25rpx;
+    right: 27%;
     height: 40rpx;
     width: 40rpx;
 }
@@ -31,11 +31,12 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    background: #ffffff;
 }
 
 .category-item{
+    margin: 10rpx 0rpx;
     margin-left: 1%;
-    margin-top: 1%;
     width: 18.8%;
     height: 150rpx;
 }
@@ -55,9 +56,15 @@
     height: 300rpx;
 }
 
+.brand-view{
+    padding: 1%;
+    background: #ffffff;
+}
+
 .brand-img{
+    margin-top: 20rpx;
     margin-left: 1%;
-    width:32%;
+    width:32.1%;
     height: 210rpx;
     font-size: 26rpx;
 }
@@ -67,7 +74,13 @@
     height: 210rpx;
 }
 
+.scroll-view{
+    padding: 1%;
+    background: #ffffff;
+}
+
 .scroll-img{
+    margin-top: 20rpx;
     margin-left: 1%;
     width:23.8%;
     height: 180rpx;
@@ -90,9 +103,52 @@
     margin: 10rpx auto;
     margin-top: 20rpx;
     width: 46%;
-    text-align: center;
+    text-align: left;
+    background: #ffffff;
+}
+
+.half text{
+    padding-left: 10rpx;
 }
 
 .half image{
     width: 100%;
+}
+
+.goods-price{
+    display: flex;
+    flex-direction: row;
+    padding: 10rpx;
+    color: #ff0000;
+    font-size: 24rpx;
+}
+
+.goods-oldPress{
+    padding: 5rpx;
+    color: #000000;
+    font-size: 16rpx;
+    text-decoration: line-through;
+}
+
+.goods-add{
+    margin-left: 40%;
+    width: 50rpx;
+    height: 50rpx;
+}
+
+.goods-add image{
+    width: 50rpx;
+    height: 50rpx;
+}
+
+.foot{
+    margin-top: 20rpx;
+    display: flex;
+    flex-direction: row;
+}
+
+.foot text{
+    margin: 0px auto;
+    font-size: 20rpx;
+    color: #5e5e5e;
 }

@@ -19,34 +19,40 @@
         <image src='{{item.image}}'></image>
     </view>
 </view>
-<view style='text-align:center;margin-top:20rpx;'>
-    <text>品牌</text>
-    <view style='border-bottom:1px solid #000000;margin-top:10rpx;'></view>
+<view style='text-align:center;margin-top:20rpx;margin-bottom:5rpx;background:#ffffff;'>
+    <text style='font-weight:bold;'>品牌</text>
+    <view style='margin:0 auto;border-top:1px solid #000000;margin-top:10rpx;width:80%;'></view>
+    <view style='margin:0 auto;border-top:1px solid #000000;margin-top:5rpx;width:75%;'></view>
+    <view style='margin:0 auto;border-top:1px solid #000000;margin-top:5rpx;padding-bottom:5rpx;width:80%;'></view>
 </view>
 <!-- 品牌推荐 -->
 <view class="brand-view">
-    <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
+    <scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%">
         <view id="demo1" class="scroll-view-item_H brand-img" wx:for="{{brand}}" wx:key="brand">
             <image src='{{item.image}}'></image>
         </view>
     </scroll-view>
 </view>
 <!-- 店家推荐 -->
-<view style='text-align:center;margin-top:20rpx;'>
-    <text>店家推荐</text>
-    <view style='border-bottom:1px solid #000000;margin-top:10rpx;'></view>
+<view style='text-align:center;margin-top:20rpx;margin-bottom:5rpx;background:#ffffff;'>
+    <text style='font-weight:bold;'>店家推荐</text>
+    <view style='margin:0 auto;border-top:1px solid #000000;margin-top:10rpx;width:80%;'></view>
+    <view style='margin:0 auto;border-top:1px solid #000000;margin-top:5rpx;width:75%;'></view>
+    <view style='margin:0 auto;border-top:1px solid #000000;margin-top:5rpx;padding-bottom:5rpx;width:80%;'></view>
 </view>
 <view class="scroll-view">
-    <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
+    <scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%">
         <view id="demo1" class="scroll-view-item_H scroll-img" wx:for="{{scroll}}" wx:key="scroll">
             <image src='{{item.image}}'></image>
         </view>
     </scroll-view>
 </view>
 <!-- 热门商品 -->
-<view style='text-align:center;margin-top:20rpx;'>
-    <text>热门商品</text>
-    <view style='border-bottom:1px solid #000000;margin-top:10rpx;'></view>
+<view style='text-align:center;margin-top:20rpx;margin-bottom:5rpx;background:#ffffff;'>
+    <text style='font-weight:bold;'>热门商品</text>
+    <view style='margin:0 auto;border-top:1px solid #000000;margin-top:10rpx;width:80%;'></view>
+    <view style='margin:0 auto;border-top:1px solid #000000;margin-top:5rpx;width:75%;'></view>
+    <view style='margin:0 auto;border-top:1px solid #000000;margin-top:5rpx;padding-bottom:5rpx;width:80%;'></view>
 </view>
 <view class='goods'>
     <view class='half' wx:for="{{goods}}" wx:key="goods">
@@ -56,5 +62,19 @@
                 <text>{{item.goodsName}}</text>
             </view>
         </navigator>
+        <view class='goods-price'>
+            <view>
+                <text>￥{{item.price}}</text>
+            </view>
+            <view class='goods-oldPress'>
+                <text>￥{{item.oldPrice}}</text>
+            </view>
+            <view class='goods-add' bindtap='goodsAdd' data-goodsid='{{item.id}}'>
+                <image src='../../images/car.png'></image>
+            </view>
+        </view>
     </view>
+</view>
+<view class='foot'>
+    <text>————————————不要扯了，已经扯到底了————————————</text>
 </view>

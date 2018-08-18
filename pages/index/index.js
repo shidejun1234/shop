@@ -55,17 +55,29 @@ Page({
             'image': '../../images/hot_01.jpg'
         }],
         goods: [{
+            'id':'1',
             'goodsImage': '../../images/hot_01.jpg',
-            'goodsName': 'asdasd'
+            'goodsName': 'asdasd',
+            'price': '666',
+            'oldPrice': '999'
         }, {
+            'id':'2',
             'goodsImage': '../../images/hot_04.jpg',
-            'goodsName': 'asdasd'
+            'goodsName': 'asdasd',
+            'price': '666',
+            'oldPrice': '999'
         }, {
+            'id':'3',
             'goodsImage': '../../images/hot_04.jpg',
-            'goodsName': 'asdasd'
+            'goodsName': 'asdasd',
+            'price': '666',
+            'oldPrice': '999'
         }, {
+            'id':'4',
             'goodsImage': '../../images/hot_01.jpg',
-            'goodsName': 'asdasd'
+            'goodsName': 'asdasd',
+            'price': '666',
+            'oldPrice': '999'
         }]
     },
 
@@ -76,6 +88,10 @@ Page({
         this.setData({
             hig: 750 / (width / height)
         });
+    },
+
+    goodsAdd:function(e){
+        console.log(e.currentTarget.dataset.goodsid);
     },
 
     /**
