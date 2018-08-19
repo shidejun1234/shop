@@ -1,2 +1,29 @@
-<!--pages/car/car.wxml-->
-<text>pages/car/car.wxml</text>
+<view wx:if='{{hasCar}}'>
+    <view class='goodscar' wx:for="{{goodsCar}}" wx:key="goods">
+        <view class='goodscar-left'>
+            <image src='../../images/hot_01.jpg'></image>
+        </view>
+        <view class='goodscar-right'>
+            <view class='goodscar-right-top'>
+                <text>{{item.goodsName}}</text>
+            </view>
+            <view class='goodscar-right-bottom'>
+                <view class='goodscar-right-bottom-left'>
+                    <text>￥{{item.price}}</text>
+                </view>
+                <view class='goodscar-right-bottom-right'>
+                    <button disabled='{{item.isOne}}' bindtap='goodsReduce' data-id='{{index}}' data-num='{{item.goodsNum}}'>-</button>
+                    <text>{{item.goodsNum}}</text>
+                    <button bindtap='goodsAdd' data-id='{{index}}' data-num='{{item.goodsNum}}'>+</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class='no' wx:else>
+    <image src='../../images/goods-car.png'></image>
+    <text>购物车暂无商品~</text>
+    <navigator url="../index/index" open-type="switchTab" hover-class="other-navigator-hover">
+        <button>去逛逛</button>
+    </navigator>
+</view>

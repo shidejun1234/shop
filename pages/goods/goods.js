@@ -12,18 +12,20 @@ Page({
         interval: 2000,
         duration: 500,
         goods: [{
-            'id': '1',
+            'id': '3',
             'goodsName': 'asdasd',
             'price': '666',
             'oldPrice': '999',
-            'inventory':'45',
-            'sales':'55'
+            'inventory': '45',
+            'sales': '55'
         }],
-        isCollect:false,
+        isCollect: false,
         aaaa: "asdfasdfaf",
         isaddcar: true,
-        isbuy:true,
-        isab:true
+        isbuy: true,
+        isab: true,
+        isOne: true,
+        goodsNum: 1
     },
 
     imageLoad: function(e) {
@@ -35,13 +37,13 @@ Page({
         });
     },
 
-    isCollect:function(){
+    isCollect: function() {
         this.setData({
             isCollect: !this.data.isCollect
         });
-        var title="取消收藏";
-        if (this.data.isCollect){
-            title="收藏成功"
+        var title = "取消收藏";
+        if (this.data.isCollect) {
+            title = "收藏成功"
         }
         wx.showToast({
             title: title,
@@ -50,45 +52,115 @@ Page({
         })
     },
 
-    call:function(){
+    call: function() {
         wx.makePhoneCall({
             phoneNumber: '13242657732',
         });
     },
 
-    car:function(){
+    car: function() {
         wx.switchTab({
             url: '../car/car',
         });
     },
 
-    addCar:function(){
+    addCar: function() {
         this.setData({
-            isaddcar:false,
-            isab:false
+            isaddcar: false,
+            isab: false
         });
     },
 
-    buy: function () {
+    buy: function() {
         this.setData({
             isbuy: false,
             isab: false
         });
     },
 
-    hiddenab:function(){
+    hiddenab: function() {
         this.setData({
             isaddcar: true,
-            isbuy:true,
+            isbuy: true,
             isab: true
         });
+        this.setData({
+            goodsNum: 1,
+            isOne: true
+        });
+    },
+
+    goodsAdd: function() {
+        this.setData({
+            goodsNum: this.data.goodsNum + 1
+        });
+        if (this.data.goodsNum > 1) {
+            this.setData({
+                isOne: false
+            });
+        }
+    },
+
+    goodsReduce: function() {
+        this.setData({
+            goodsNum: this.data.goodsNum - 1
+        });
+        if (this.data.goodsNum < 2) {
+            this.setData({
+                isOne: true
+            });
+        }
+    },
+
+    doAddCar: function() {
+        var that = this;
+        var goodsData = {
+            id: that.data.goods[0].id,
+            goodsName: that.data.goods[0].goodsName,
+            price: that.data.goods[0].price,
+            goodsNum: that.data.goodsNum,
+            isOne: that.data.isOne
+        }
+        var goodsCar = wx.getStorageSync('goodsCar');
+        if (goodsCar) {
+            var isGoodsData = true;
+            for (var i = 0; i < goodsCar.length; i++) {
+                if (goodsCar[i].id == that.data.goods[0].id) {
+                    goodsCar[i].goodsNum += that.data.goodsNum;
+                    isGoodsData = false;
+                }
+                if (goodsCar[i].goodsNum > 1) {
+                    goodsCar[i].isOne=false;
+                }
+                if (goodsCar[i].goodsNum < 2) {
+                    goodsCar[i].isOne = true;
+                }
+            }
+            if (isGoodsData) {
+                goodsCar.push(goodsData);
+            }
+            wx.setStorageSync('goodsCar', goodsCar);
+        } else {
+            wx.setStorageSync('goodsCar', [goodsData]);
+        }
+        wx.showToast({
+            title: '添加购物车成功',
+            icon: 'success',
+            duration: 2000
+        });
+        that.hiddenab();
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-
+        var that = this;
+        if (that.data.goodsNum > 1) {
+            that.setData({
+                isOne: false
+            });
+        }
     },
 
     /**

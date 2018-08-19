@@ -1,9 +1,9 @@
 {
     "pages": [
+        "pages/car/car",
         "pages/index/index",
         "pages/category/category",
         "pages/store/store",
-        "pages/car/car",
         "pages/my/my",
         "pages/goods/goods"
     ],

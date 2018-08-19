@@ -86,7 +86,18 @@
             <text class='goods-addcar-top-right-price'>￥{{goods[0].price}}</text>
         </view>
     </view>
-    <view class='goods-addcar-bottom'>
+    <view style='background:#ffffff;border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;height:30rpx;'></view>
+    <view class='goods-addnum'>
+        <view class='goods-addnum-left'>
+            <text>购买数量</text>
+        </view>
+        <view class='goods-addnum-right'>
+            <button disabled='{{isOne}}' bindtap='goodsReduce'>-</button>
+            <text>{{goodsNum}}</text>
+            <button bindtap='goodsAdd'>+</button>
+        </view>
+    </view>
+    <view class='goods-addcar-bottom' bindtap='doAddCar'>
         <text>加入购物车</text>
     </view>
 </view>
@@ -100,8 +111,20 @@
             <text class='goods-buy-top-right-price'>￥{{goods[0].price}}</text>
         </view>
     </view>
+    <view style='background:#ffffff;border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;height:30rpx;'></view>
+    <view class='goods-addnum'>
+        <view class='goods-addnum-left'>
+            <text>购买数量</text>
+        </view>
+        <view class='goods-addnum-right'>
+            <button disabled='{{isOne}}' bindtap='goodsReduce'>-</button>
+            <text>{{goodsNum}}</text>
+            <button bindtap='goodsAdd'>+</button>
+        </view>
+    </view>
     <view class='goods-buy-bottom'>
         <text>立即购买</text>
     </view>
 </view>
 <view class='goods-addcar-buy' hidden='{{isab}}' bindtap='hiddenab'></view>
+<view class='closebtn' hidden='{{isab}}' bindtap='hiddenab'>x</view>
