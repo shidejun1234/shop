@@ -2,7 +2,7 @@
     background: #ffffff;
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
 
 .goodscar-left{

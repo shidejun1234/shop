@@ -12,7 +12,7 @@ Page({
         interval: 2000,
         duration: 500,
         goods: [{
-            'id': '3',
+            'id': '1',
             'goodsName': 'asdasd',
             'price': '666',
             'oldPrice': '999',
@@ -31,7 +31,6 @@ Page({
     imageLoad: function(e) {
         var width = e.detail.width;
         var height = e.detail.height;
-        console.log(750 / (width / height));
         this.setData({
             hig: 750 / (width / height)
         });
@@ -142,7 +141,14 @@ Page({
             wx.setStorageSync('goodsCar', goodsCar);
         } else {
             wx.setStorageSync('goodsCar', [goodsData]);
-        }
+        };
+        for (var i = 0; i < goodsCar.length; i++) {
+            if (goodsCar[i].id == this.data.goods[0].id) {
+                this.setData({
+                    carNum: goodsCar[i].goodsNum
+                });
+            }
+        };
         wx.showToast({
             title: '添加购物车成功',
             icon: 'success',
@@ -155,12 +161,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        var that = this;
-        if (that.data.goodsNum > 1) {
-            that.setData({
-                isOne: false
-            });
-        }
     },
 
     /**
@@ -174,7 +174,16 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-
+        var goodsCar=wx.getStorageSync('goodsCar');
+        if (goodsCar) {
+            for (var i = 0; i < goodsCar.length; i++) {
+                if (goodsCar[i].id == this.data.goods[0].id) {
+                    this.setData({
+                        carNum: goodsCar[i].goodsNum
+                    });
+                }
+            }
+        }
     },
 
     /**

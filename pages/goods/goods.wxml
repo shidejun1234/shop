@@ -76,6 +76,9 @@
         </view>
     </view>
 </view>
+<view class='goods-bottom-goosdNum'>
+    <text>{{carNum}}</text>
+</view>
 <view class='goods-addcar' hidden='{{isaddcar}}'>
     <view class='goods-addcar-top'>
         <view class='goods-addcar-top-left'>

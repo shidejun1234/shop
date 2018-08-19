@@ -124,6 +124,20 @@
     height: 50rpx;
 }
 
+.goods-bottom-goosdNum{
+    width: 25rpx;
+    height: 25rpx;
+    text-align: center;
+    line-height: 25rpx;
+    font-size: 15rpx;
+    background: #ff0000;
+    border-radius: 23rpx;
+    position: fixed;
+    z-index: 98;
+    bottom: 55rpx;
+    right: 52%;
+}
+
 .goods-bottom-right{
     display: flex;
     flex-direction: row;
@@ -303,7 +317,7 @@
     z-index: 99;
     bottom: 380rpx;
     right: 20rpx;
-    background: #e5e5e5;
+    background: #ffffff;
     border: 1px solid #000000;
     height: 30rpx;
     width: 30rpx;
