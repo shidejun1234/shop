@@ -1,3 +1,4 @@
+@import "../../wxParse/wxParse.wxss";
 .swiper{
     width: 100%;
 }
@@ -18,7 +19,8 @@
 }
 
 .goods-name{
-    margin-left: 20rpx;
+    font-size: 30rpx;
+    margin: 0rpx 20rpx;
 }
 
 .goods-price{
@@ -32,7 +34,7 @@
 .goods-oldPrice{
     margin-left: 10rpx;
     margin-top: 10rpx;
-    color: #000000;
+    color: #5e5e5e;
     font-size: 16rpx;
     text-decoration: line-through;
 }
@@ -44,7 +46,7 @@
 
 .goods-collect{
     margin: 0 auto;
-    margin-top: 10rpx;
+    margin-top: 25%;
     width: 50rpx;
     font-size: 16rpx;
     text-align: center;

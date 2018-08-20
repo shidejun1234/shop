@@ -9,7 +9,7 @@
             </view>
             <view class='goodscar-right-bottom'>
                 <view class='goodscar-right-bottom-left'>
-                    <text>￥{{item.price}}</text>
+                    <text>{{item.price}}</text>
                 </view>
                 <view class='goodscar-right-bottom-right'>
                     <button disabled='{{item.isOne}}' bindtap='goodsReduce' data-id='{{index}}' data-num='{{item.goodsNum}}'>-</button>

@@ -1,4 +1,4 @@
-// pages/goods/goods.js
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
     /**
@@ -14,8 +14,8 @@ Page({
         goods: [{
             'id': '1',
             'goodsName': 'asdasd',
-            'price': '666',
-            'oldPrice': '999',
+            'price': '￥666',
+            'oldPrice': '￥999',
             'inventory': '45',
             'sales': '55'
         }],
@@ -161,6 +161,25 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        var that = this;
+        wx.request({
+            url: 'http://localhost/shop/goodsdetails.php',
+            header: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            method:'GET',
+            data:{
+                gId: options.gId
+            },
+            success: function (res) {
+                console.log(res.data);
+                that.setData({
+                    goods: res.data
+                });
+                var article = res.data.gDetails
+                WxParse.wxParse('article', 'html', article, that, 5);
+            }
+        });
     },
 
     /**

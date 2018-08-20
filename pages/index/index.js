@@ -12,25 +12,35 @@ Page({
         interval: 2000,
         duration: 500,
         category: [{
-            'image': '../../images/hot_01.jpg'
+            'image': '../../images/qiandao.png',
+            'category': '签到'
         }, {
-            'image': '../../images/hot_04.jpg',
+            'image': '../../images/youhuiquan.png',
+            'category': '优惠券'
         }, {
-            'image': '../../images/hot_01.jpg'
+            'image': '../../images/penzai.png',
+            'category': '盆栽'
         }, {
-            'image': '../../images/hot_04.jpg',
+            'image': '../../images/taideng.png',
+            'category': '台灯'
         }, {
-            'image': '../../images/hot_01.jpg'
+            'image': '../../images/shenqi.png',
+            'category': '神器'
         }, {
-            'image': '../../images/hot_04.jpg',
+            'image': '../../images/zahuopu.png',
+            'category': '杂货铺'
         }, {
-            'image': '../../images/hot_01.jpg'
+            'image': '../../images/yusan.png',
+            'category': '雨伞'
         }, {
-            'image': '../../images/hot_04.jpg',
+            'image': '../../images/wenju.png',
+            'category': '文具'
         }, {
-            'image': '../../images/hot_01.jpg'
+            'image': '../../images/wazi.png',
+            'category': '袜子'
         }, {
-            'image': '../../images/hot_04.jpg',
+            'image': '../../images/muyu.png',
+            'category': '沐浴'
         }],
         brand: [{
             'image': '../../images/hot_01.jpg'
@@ -53,38 +63,12 @@ Page({
             'image': '../../images/hot_04.jpg'
         }, {
             'image': '../../images/hot_01.jpg'
-        }],
-        goods: [{
-            'id':'1',
-            'goodsImage': '../../images/hot_01.jpg',
-            'goodsName': 'asdasd',
-            'price': '666',
-            'oldPrice': '999'
-        }, {
-            'id':'2',
-            'goodsImage': '../../images/hot_04.jpg',
-            'goodsName': 'asdasd',
-            'price': '666',
-            'oldPrice': '999'
-        }, {
-            'id':'3',
-            'goodsImage': '../../images/hot_04.jpg',
-            'goodsName': 'asdasd',
-            'price': '666',
-            'oldPrice': '999'
-        }, {
-            'id':'4',
-            'goodsImage': '../../images/hot_01.jpg',
-            'goodsName': 'asdasd',
-            'price': '666',
-            'oldPrice': '999'
         }]
     },
 
     imageLoad: function(e) {
         var width = e.detail.width;
         var height = e.detail.height;
-        console.log(750 / (width / height));
         this.setData({
             hig: 750 / (width / height)
         });
@@ -94,7 +78,18 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-
+        var that=this;
+        wx.request({
+            url: 'http://localhost/shop/showgoods.php',
+            header: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            success:function(res){
+                that.setData({
+                    goods:res.data
+                });
+            }
+        });
     },
 
     /**

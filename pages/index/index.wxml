@@ -16,7 +16,8 @@
 <!-- 分类 -->
 <view class='category'>
     <view class='category-item' wx:for="{{category}}" wx:key="category">
-        <image src='{{item.image}}'></image>
+        <image src='{{item.image}}' mode='widthFix'></image>
+        <text>{{item.category}}</text>
     </view>
 </view>
 <view style='text-align:center;margin-top:5rpx;background:#ffffff;'>
@@ -56,20 +57,20 @@
 </view>
 <view class='goods'>
     <view class='half' wx:for="{{goods}}" wx:key="goods">
-        <navigator url="/pages/goods/goods?id={{item.id}}" hover-class="navigator-hover">
-            <image src='{{item.goodsImage}}'></image>
-            <view>
-                <text>{{item.goodsName}}</text>
+        <navigator url="/pages/goods/goods?gId={{item.gId}}" hover-class="navigator-hover">
+            <image src='{{item.gImage}}'></image>
+            <view class='goods-name'>
+                <text>{{item.gName}}</text>
+            </view>
+            <view class='goods-price'>
+                <view>
+                    <text>{{item.gPrice}}</text>
+                </view>
+                <view class='goods-oldPrice'>
+                    <text>{{item.gOldPrice}}</text>
+                </view>
             </view>
         </navigator>
-        <view class='goods-price'>
-            <view>
-                <text>￥{{item.price}}</text>
-            </view>
-            <view class='goods-oldPrice'>
-                <text>￥{{item.oldPrice}}</text>
-            </view>
-        </view>
     </view>
 </view>
 <view class='foot'>

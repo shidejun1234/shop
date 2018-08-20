@@ -1,3 +1,4 @@
+<import src="../../wxParse/wxParse.wxml" />
 <!-- 顶部滚动条 -->
 <view class="swiper">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='width:100%;height:{{hig}}rpx;'>
@@ -12,14 +13,14 @@
 <view class='goods-title'>
     <view class='goods-title-left'>
         <view class='goods-name'>
-            <text>{{goods[0].goodsName}}</text>
+            <text>{{goods.gName}}</text>
         </view>
         <view class='goods-price'>
             <view>
-                <text>￥{{goods[0].price}}</text>
+                <text>{{goods.gPrice}}</text>
             </view>
             <view class='goods-oldPrice'>
-                <text>￥{{goods[0].oldPrice}}</text>
+                <text>{{goods.gOldPrice}}</text>
             </view>
         </view>
     </view>
@@ -37,15 +38,17 @@
 <!-- 商品库存 -->
 <view class='goods-inventory-sales'>
     <view>
-        <text>库存： {{goods[0].inventory}}</text>
+        <text>库存： {{goods.gInventory}}</text>
     </view>
     <view>
-        <text>销量： {{goods[0].sales}}</text>
+        <text>销量： {{goods.gSales}}</text>
     </view>
 </view>
 <!-- 商品详情 -->
 <view class='goods-details'>
-    <view class='goods-details-item'> 商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情1234</view>
+    <view class='goods-details-item'>
+        <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
 </view>
 <!-- foot -->
 <view class='foot'>
@@ -86,7 +89,7 @@
         </view>
         <view class='goods-addcar-top-right'>
             <text class='goods-addcar-top-right-title'>{{goods[0].goodsName}}</text>
-            <text class='goods-addcar-top-right-price'>￥{{goods[0].price}}</text>
+            <text class='goods-addcar-top-right-price'>{{goods[0].price}}</text>
         </view>
     </view>
     <view style='background:#ffffff;border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;height:30rpx;'></view>
@@ -111,7 +114,7 @@
         </view>
         <view class='goods-buy-top-right'>
             <text class='goods-buy-top-right-title'>{{goods[0].goodsName}}</text>
-            <text class='goods-buy-top-right-price'>￥{{goods[0].price}}</text>
+            <text class='goods-buy-top-right-price'>{{goods[0].price}}</text>
         </view>
     </view>
     <view style='background:#ffffff;border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;height:30rpx;'></view>
