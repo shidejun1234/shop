@@ -172,7 +172,6 @@ Page({
                 gId: options.gId
             },
             success: function (res) {
-                console.log(res.data);
                 that.setData({
                     goods: res.data
                 });

@@ -5,6 +5,8 @@ Page({
      * 页面的初始数据
      */
     data: {
+        page: 1,
+        isBottom: true,
         background: ['../../images/hot_01.jpg', '../../images/hot_02.jpg', '../../images/hot_04.jpg', '../../images/hot_02.jpg'],
         indicatorDots: false,
         vertical: false,
@@ -63,7 +65,8 @@ Page({
             'image': '../../images/hot_04.jpg'
         }, {
             'image': '../../images/hot_01.jpg'
-        }]
+        }],
+        goods: []
     },
 
     imageLoad: function(e) {
@@ -77,20 +80,7 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
-        var that=this;
-        wx.request({
-            url: 'http://localhost/shop/showgoods.php',
-            header: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            success:function(res){
-                that.setData({
-                    goods:res.data
-                });
-            }
-        });
-    },
+    onLoad: function(options) {},
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -124,14 +114,82 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function() {
-
+        wx.showNavigationBarLoading();
+        wx.showToast({
+            title: '正在刷新',
+            icon: "loading"
+        });
+        var that = this;
+        wx.request({
+            url: 'http://localhost/shop/showgoods.php',
+            header: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            data: {
+                page: 0
+            },
+            success: function(res) {
+                that.setData({
+                    goods: res.data,
+                    page: 2,
+                    isBottom: true
+                });
+                wx.showToast({
+                    title: '刷新成功',
+                    icon: "success",
+                    duration: 2000
+                });
+                wx.hideNavigationBarLoading();
+                wx.stopPullDownRefresh();
+            }
+        });
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function() {
-
+        var that = this;
+        if (that.data.isBottom == true) {
+            wx.showLoading({
+                title: '玩命加载中',
+            })
+            var page = that.data.page;
+            page = (page - 1) * 10;
+            wx.request({
+                url: 'http://localhost/shop/showgoods.php',
+                header: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                data: {
+                    page: page
+                },
+                success: function(res) {
+                    if (res.data == '数据已全部加载') {
+                        that.setData({
+                            isBottom: false
+                        });
+                    } else {
+                        var jsonstr = JSON.stringify(res.data);
+                        jsonstr = jsonstr.substring(1, jsonstr.length - 1);
+                        var goods = that.data.goods;
+                        var goodsstr = JSON.stringify(goods);
+                        goodsstr = goodsstr.substring(1, goodsstr.length - 1);
+                        if (goodsstr == "") {
+                            jsonstr = '[' + jsonstr + ']';
+                        } else {
+                            jsonstr = '[' + goodsstr + ',' + jsonstr + ']';
+                        }
+                        var jsonarray = JSON.parse(jsonstr);
+                        that.setData({
+                            goods: jsonarray
+                        })
+                        that.data.page += 1;
+                    }
+                    wx.hideLoading();
+                }
+            });
+        }
     },
 
     /**

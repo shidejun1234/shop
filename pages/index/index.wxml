@@ -73,6 +73,6 @@
         </navigator>
     </view>
 </view>
-<view class='foot'>
+<view class='foot' hidden='{{isBottom}}'>
     <text>————————————不要扯了，已经扯到底了————————————</text>
 </view>
