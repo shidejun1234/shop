@@ -107,13 +107,12 @@ Page({
         var that = this;
         var goodsData = {
             gId: that.data.goods.gId,
-            gImage:that.data.goods.gImage,
+            gImage: that.data.goods.gImage,
             gName: that.data.goods.gName,
             gPrice: that.data.goods.gPrice,
             goodsNum: that.data.goodsNum,
             isOne: that.data.isOne
         }
-        console.log(goodsData);
         var goodsCar = wx.getStorageSync('goodsCar');
         if (goodsCar) {
             var isGoodsData = true;
@@ -123,7 +122,7 @@ Page({
                     isGoodsData = false;
                 }
                 if (goodsCar[i].goodsNum > 1) {
-                    goodsCar[i].isOne=false;
+                    goodsCar[i].isOne = false;
                 }
                 if (goodsCar[i].goodsNum < 2) {
                     goodsCar[i].isOne = true;
@@ -136,12 +135,18 @@ Page({
         } else {
             wx.setStorageSync('goodsCar', [goodsData]);
         };
-        for (var i = 0; i < goodsCar.length; i++) {
-            if (goodsCar[i].gId == this.data.goods.gId) {
-                this.setData({
-                    carNum: goodsCar[i].goodsNum
-                });
+        if (goodsCar) {
+            for (var i = 0; i < goodsCar.length; i++) {
+                if (goodsCar[i].gId == that.data.goods.gId) {
+                    that.setData({
+                        carNum: goodsCar[i].goodsNum
+                    });
+                }
             }
+        }else{
+            that.setData({
+                carNum: that.data.goodsNum
+            });
         };
         wx.showToast({
             title: '添加购物车成功',
@@ -161,11 +166,11 @@ Page({
             header: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
-            method:'GET',
-            data:{
+            method: 'GET',
+            data: {
                 gId: options.gId
             },
-            success: function (res) {
+            success: function(res) {
                 that.setData({
                     goods: res.data
                 });
@@ -195,8 +200,7 @@ Page({
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function() {
-    },
+    onShow: function() {},
 
     /**
      * 生命周期函数--监听页面隐藏

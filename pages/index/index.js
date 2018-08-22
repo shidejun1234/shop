@@ -66,7 +66,8 @@ Page({
         }, {
             'image': '../../images/hot_01.jpg'
         }],
-        goods: []
+        goods: [],
+        aa: []
     },
 
     imageLoad: function(e) {
@@ -115,10 +116,6 @@ Page({
      */
     onPullDownRefresh: function() {
         wx.showNavigationBarLoading();
-        wx.showToast({
-            title: '正在刷新',
-            icon: "loading"
-        });
         var that = this;
         wx.request({
             url: 'http://120.77.251.239/shop/showgoods.php',
@@ -133,11 +130,6 @@ Page({
                     goods: res.data,
                     page: 2,
                     isBottom: true
-                });
-                wx.showToast({
-                    title: '刷新成功',
-                    icon: "success",
-                    duration: 1000
                 });
                 wx.hideNavigationBarLoading();
                 wx.stopPullDownRefresh();
@@ -170,17 +162,21 @@ Page({
                             isBottom: false
                         });
                     } else {
-                        var jsonstr = JSON.stringify(res.data);
-                        jsonstr = jsonstr.substring(1, jsonstr.length - 1);
-                        var goods = that.data.goods;
-                        var goodsstr = JSON.stringify(goods);
-                        goodsstr = goodsstr.substring(1, goodsstr.length - 1);
-                        if (goodsstr == "") {
-                            jsonstr = '[' + jsonstr + ']';
-                        } else {
-                            jsonstr = '[' + goodsstr + ',' + jsonstr + ']';
+                        // var jsonstr = JSON.stringify(res.data);
+                        // jsonstr = jsonstr.substring(1, jsonstr.length - 1);
+                        // var goods = that.data.goods;
+                        // var goodsstr = JSON.stringify(goods);
+                        // goodsstr = goodsstr.substring(1, goodsstr.length - 1);
+                        // if (goodsstr == "") {
+                        //     jsonstr = '[' + jsonstr + ']';
+                        // } else {
+                        //     jsonstr = '[' + goodsstr + ',' + jsonstr + ']';
+                        // }
+                        // var jsonarray = JSON.parse(jsonstr);
+                        var jsonarray=that.data.goods;
+                        for (var i = 0; i < res.data.length; i++) {
+                            jsonarray.push(res.data[i]);
                         }
-                        var jsonarray = JSON.parse(jsonstr);
                         that.setData({
                             goods: jsonarray
                         })

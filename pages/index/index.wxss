@@ -112,7 +112,7 @@
 .half{
     margin: 10rpx;
     margin-top: 20rpx;
-    width: 46%;
+    width: 46.8%;
     text-align: left;
     background: #ffffff;
     border: 1px solid #e5e5e5;
