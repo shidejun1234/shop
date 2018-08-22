@@ -121,7 +121,7 @@ Page({
         });
         var that = this;
         wx.request({
-            url: 'http://localhost/shop/showgoods.php',
+            url: 'http://120.77.251.239/shop/showgoods.php',
             header: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
@@ -137,7 +137,7 @@ Page({
                 wx.showToast({
                     title: '刷新成功',
                     icon: "success",
-                    duration: 2000
+                    duration: 1000
                 });
                 wx.hideNavigationBarLoading();
                 wx.stopPullDownRefresh();
@@ -157,7 +157,7 @@ Page({
             var page = that.data.page;
             page = (page - 1) * 10;
             wx.request({
-                url: 'http://localhost/shop/showgoods.php',
+                url: 'http://120.77.251.239/shop/showgoods.php',
                 header: {
                     "Content-Type": "application/x-www-form-urlencoded"
                 },

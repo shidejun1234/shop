@@ -11,14 +11,6 @@ Page({
         autoplay: true,
         interval: 2000,
         duration: 500,
-        goods: [{
-            'id': '1',
-            'goodsName': 'asdasd',
-            'price': '￥666',
-            'oldPrice': '￥999',
-            'inventory': '45',
-            'sales': '55'
-        }],
         isCollect: false,
         aaaa: "asdfasdfaf",
         isaddcar: true,
@@ -114,17 +106,19 @@ Page({
     doAddCar: function() {
         var that = this;
         var goodsData = {
-            id: that.data.goods[0].id,
-            goodsName: that.data.goods[0].goodsName,
-            price: that.data.goods[0].price,
+            gId: that.data.goods.gId,
+            gImage:that.data.goods.gImage,
+            gName: that.data.goods.gName,
+            gPrice: that.data.goods.gPrice,
             goodsNum: that.data.goodsNum,
             isOne: that.data.isOne
         }
+        console.log(goodsData);
         var goodsCar = wx.getStorageSync('goodsCar');
         if (goodsCar) {
             var isGoodsData = true;
             for (var i = 0; i < goodsCar.length; i++) {
-                if (goodsCar[i].id == that.data.goods[0].id) {
+                if (goodsCar[i].gId == that.data.goods.gId) {
                     goodsCar[i].goodsNum += that.data.goodsNum;
                     isGoodsData = false;
                 }
@@ -143,7 +137,7 @@ Page({
             wx.setStorageSync('goodsCar', [goodsData]);
         };
         for (var i = 0; i < goodsCar.length; i++) {
-            if (goodsCar[i].id == this.data.goods[0].id) {
+            if (goodsCar[i].gId == this.data.goods.gId) {
                 this.setData({
                     carNum: goodsCar[i].goodsNum
                 });
@@ -163,7 +157,7 @@ Page({
     onLoad: function(options) {
         var that = this;
         wx.request({
-            url: 'http://localhost/shop/goodsdetails.php',
+            url: 'http://120.77.251.239/shop/goodsdetails.php',
             header: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
@@ -179,6 +173,16 @@ Page({
                 WxParse.wxParse('article', 'html', article, that, 5);
             }
         });
+        var goodsCar = wx.getStorageSync('goodsCar');
+        if (goodsCar) {
+            for (var i = 0; i < goodsCar.length; i++) {
+                if (goodsCar[i].gId == options.gId) {
+                    this.setData({
+                        carNum: goodsCar[i].goodsNum
+                    });
+                }
+            }
+        }
     },
 
     /**
@@ -192,16 +196,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-        var goodsCar=wx.getStorageSync('goodsCar');
-        if (goodsCar) {
-            for (var i = 0; i < goodsCar.length; i++) {
-                if (goodsCar[i].id == this.data.goods[0].id) {
-                    this.setData({
-                        carNum: goodsCar[i].goodsNum
-                    });
-                }
-            }
-        }
     },
 
     /**

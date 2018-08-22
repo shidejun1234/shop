@@ -1,15 +1,15 @@
 <view wx:if='{{hasCar}}'>
     <view class='goodscar' wx:for="{{goodsCar}}" wx:key="goods">
         <view class='goodscar-left'>
-            <image src='../../images/hot_01.jpg'></image>
+            <image src='{{item.gImage}}'></image>
         </view>
         <view class='goodscar-right'>
             <view class='goodscar-right-top'>
-                <text>{{item.goodsName}}</text>
+                <text>{{item.gName}}</text>
             </view>
             <view class='goodscar-right-bottom'>
                 <view class='goodscar-right-bottom-left'>
-                    <text>{{item.price}}</text>
+                    <text>{{item.gPrice}}</text>
                 </view>
                 <view class='goodscar-right-bottom-right'>
                     <button disabled='{{item.isOne}}' bindtap='goodsReduce' data-id='{{index}}' data-num='{{item.goodsNum}}'>-</button>

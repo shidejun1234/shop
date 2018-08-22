@@ -54,6 +54,7 @@ Page({
      */
     onShow: function() {
         var goodsCar = wx.getStorageSync('goodsCar');
+        console.log(goodsCar);
         if(goodsCar!=""){
             this.setData({
                 goodsCar: goodsCar,

@@ -133,6 +133,7 @@
     line-height: 25rpx;
     font-size: 15rpx;
     background: #ff0000;
+    color: #ffffff;
     border-radius: 23rpx;
     position: fixed;
     z-index: 98;
