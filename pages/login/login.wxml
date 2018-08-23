@@ -1,0 +1,7 @@
+<!--pages/login/login.wxml-->
+<view class='login'>
+    <text class='a'>为了您的体验，我们申请获取以下权限</text>
+    <view style='border:1px solid #e5e5e5;width:80%;margin:10rpx auto;'></view>
+    <text class='b'>获得您的公开信息（昵称，头像等）</text>
+</view>
+<button class="login-btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">授权登录</button>

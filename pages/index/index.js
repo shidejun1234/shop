@@ -13,6 +13,7 @@ Page({
         autoplay: true,
         interval: 2000,
         duration: 500,
+        circular:true,
         category: [{
             'image': '../../images/qiandao.png',
             'category': '签到'
@@ -78,6 +79,14 @@ Page({
         });
     },
 
+    sao:function(){
+        wx.scanCode({
+            success: function(res){
+                console.log(res);
+            }
+        });
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
@@ -118,7 +127,7 @@ Page({
         wx.showNavigationBarLoading();
         var that = this;
         wx.request({
-            url: 'http://120.77.251.239/shop/showgoods.php',
+            url: 'https://api.it120.cc/jimpdo/api/transmit/643',
             header: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
@@ -127,7 +136,7 @@ Page({
             },
             success: function(res) {
                 that.setData({
-                    goods: res.data,
+                    goods: res.data.data,
                     page: 2,
                     isBottom: true
                 });
@@ -149,7 +158,7 @@ Page({
             var page = that.data.page;
             page = (page - 1) * 10;
             wx.request({
-                url: 'http://120.77.251.239/shop/showgoods.php',
+                url: 'https://api.it120.cc/jimpdo/api/transmit/643',
                 header: {
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
@@ -157,7 +166,7 @@ Page({
                     page: page
                 },
                 success: function(res) {
-                    if (res.data == '数据已全部加载') {
+                    if (res.data.data == '数据已全部加载') {
                         that.setData({
                             isBottom: false
                         });
@@ -174,8 +183,8 @@ Page({
                         // }
                         // var jsonarray = JSON.parse(jsonstr);
                         var jsonarray=that.data.goods;
-                        for (var i = 0; i < res.data.length; i++) {
-                            jsonarray.push(res.data[i]);
+                        for (var i = 0; i < res.data.data.length; i++) {
+                            jsonarray.push(res.data.data[i]);
                         }
                         that.setData({
                             goods: jsonarray
@@ -191,7 +200,11 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function() {
-
-    }
+    onShareAppMessage: function () {
+        return {
+            title: '微信商城',
+            desc: '微信商城',
+            path: '/pages/index/index'
+        }
+    },
 })

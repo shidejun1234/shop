@@ -1,136 +1,146 @@
 <import src="../../wxParse/wxParse.wxml" />
-<!-- 顶部滚动条 -->
-<view class="swiper">
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='width:100%;height:{{hig}}rpx;'>
-        <block wx:for="{{background}}" wx:key="this">
-            <swiper-item>
-                <image src='{{item}}' mode='widthFix' style='width:100%;' bindload='imageLoad'></image>
-            </swiper-item>
-        </block>
-    </swiper>
-</view>
-<!-- 商品信息 -->
-<view class='goods-title'>
-    <view class='goods-title-left'>
-        <view class='goods-name'>
-            <text>{{goods.gName}}</text>
-        </view>
-        <view class='goods-price'>
-            <view>
-                <text>{{goods.gPrice}}</text>
+<scroll-view scroll-y="true" scroll-top="{{scrollTop}}" bindscroll="scroll" bindscrolltolower="scrollBottom" style="height:100%">
+    <!-- 顶部滚动条 -->
+    <view class="swiper">
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" style='width:100%;height:{{hig}}rpx;'>
+            <block wx:for="{{background}}" wx:key="this">
+                <swiper-item>
+                    <image src='{{item}}' mode='widthFix' style='width:100%;' bindload='imageLoad'></image>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <!-- 商品信息 -->
+    <view class='goods-title'>
+        <view class='goods-title-left'>
+            <view class='goods-name'>
+                <text>{{goods.gName}}</text>
             </view>
-            <view class='goods-oldPrice'>
-                <text>{{goods.gOldPrice}}</text>
+            <view class='goods-price'>
+                <view>
+                    <text>￥{{goods.gPrice}}</text>
+                </view>
+                <view class='goods-oldPrice'>
+                    <text>￥{{goods.gOldPrice}}</text>
+                </view>
+            </view>
+        </view>
+        <view class='goods-title-right' bindtap='isCollect'>
+            <view class='goods-collect' wx:if="{{isCollect}}">
+                <image src='../../images/icon-aixin.png'></image>
+                <text>已收藏</text>
+            </view>
+            <view class='goods-collect' wx:else>
+                <image src='../../images/icon-aixin1.png'></image>
+                <text>收藏</text>
             </view>
         </view>
     </view>
-    <view class='goods-title-right' bindtap='isCollect'>
-        <view class='goods-collect' wx:if="{{isCollect}}">
-            <image src='../../images/icon-aixin.png'></image>
-            <text>已收藏</text>
+    <!-- 商品库存 -->
+    <view class='goods-inventory-sales'>
+        <view>
+            <text>库存： {{goods.gInventory}}</text>
         </view>
-        <view class='goods-collect' wx:else>
-            <image src='../../images/icon-aixin1.png'></image>
-            <text>收藏</text>
-        </view>
-    </view>
-</view>
-<!-- 商品库存 -->
-<view class='goods-inventory-sales'>
-    <view>
-        <text>库存： {{goods.gInventory}}</text>
-    </view>
-    <view>
-        <text>销量： {{goods.gSales}}</text>
-    </view>
-</view>
-<!-- 商品详情 -->
-<view class='goods-details'>
-    <view class='goods-details-item'>
-        <template is="wxParse" data="{{wxParseData:article.nodes}}" />
-    </view>
-</view>
-<!-- foot -->
-<view class='foot'>
-    <text>————————————不要扯了，已经扯到底了————————————</text>
-</view>
-<!-- 底部菜单 -->
-<view class='goods-bottom'>
-    <view class='goods-bottom-left'>
-        <view class='goods-bottom-left-item' bindtap='call'>
-            <image src='../../images/goods-call.png'></image>
-            <text>电话</text>
-        </view>
-        <view class='goods-bottom-left-item'>
-            <image src='../../images/goods-message.png'></image>
-            <text>客服</text>
-        </view>
-        <view class='goods-bottom-left-item' bindtap='car'>
-            <image src='../../images/goods-car.png'></image>
-            <text>购物车</text>
+        <view>
+            <text>销量： {{goods.gSales}}</text>
         </view>
     </view>
-    <view class='goods-bottom-right'>
-        <view class='goods-bottom-right-item yellow' bindtap='addCar'>
+    <!-- 商品详情 -->
+    <view class='goods-details'>
+        <view class='goods-details-item'>
+            <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+        </view>
+    </view>
+    <!-- foot -->
+    <view class='foot' hidden='{{isBottom}}'>
+        <text>————————————不要扯了，已经扯到底了————————————</text>
+    </view>
+    <!-- 底部菜单 -->
+    <view class='goods-bottom'>
+        <view class='goods-bottom-left'>
+            <view class='goods-bottom-left-item' bindtap='call'>
+                <image src='../../images/goods-call.png'></image>
+                <text>电话</text>
+            </view>
+            <view class='goods-bottom-left-item'>
+                <image src='../../images/goods-message.png'></image>
+                <text>客服</text>
+            </view>
+            <view class='goods-bottom-left-item' bindtap='car'>
+                <image src='../../images/goods-car.png'></image>
+                <text>购物车</text>
+            </view>
+        </view>
+        <view class='goods-bottom-right'>
+            <view class='goods-bottom-right-item yellow' bindtap='addCar'>
+                <text>加入购物车</text>
+            </view>
+            <view class='goods-bottom-right-item red' bindtap='buy'>
+                <text>立即购买</text>
+            </view>
+        </view>
+    </view>
+    <view class='goods-bottom-goosdNum' hidden='{{haveNum}}'>
+        <text>{{carNum}}</text>
+    </view>
+    <view class='goods-addcar' hidden='{{isaddcar}}'>
+        <view class='goods-addcar-top'>
+            <view class='goods-addcar-top-left'>
+                <image src='../../images/hot_01.jpg'></image>
+            </view>
+            <view class='goods-addcar-top-right'>
+                <text class='goods-addcar-top-right-title'>{{goods.gName}}</text>
+                <text class='goods-addcar-top-right-price'>￥{{goods.gPrice}}</text>
+            </view>
+        </view>
+        <view style='background:#ffffff;border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;height:30rpx;'></view>
+        <view class='goods-addnum'>
+            <view class='goods-addnum-left'>
+                <text>购买数量</text>
+            </view>
+            <view class='goods-addnum-right'>
+                <button disabled='{{isOne}}' bindtap='goodsReduce'>-</button>
+                <text>{{goodsNum}}</text>
+                <button bindtap='goodsAdd'>+</button>
+            </view>
+        </view>
+        <view class='goods-addcar-bottom' bindtap='doAddCar'>
             <text>加入购物车</text>
         </view>
-        <view class='goods-bottom-right-item red' bindtap='buy'>
+    </view>
+    <view class='goods-buy' hidden='{{isbuy}}'>
+        <view class='goods-buy-top'>
+            <view class='goods-buy-top-left'>
+                <image src='../../images/hot_01.jpg'></image>
+            </view>
+            <view class='goods-buy-top-right'>
+                <text class='goods-buy-top-right-title'>{{goods.gName}}</text>
+                <text class='goods-buy-top-right-price'>￥{{goods.gPrice}}</text>
+            </view>
+        </view>
+        <view style='background:#ffffff;border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;height:30rpx;'></view>
+        <view class='goods-addnum'>
+            <view class='goods-addnum-left'>
+                <text>购买数量</text>
+            </view>
+            <view class='goods-addnum-right'>
+                <button disabled='{{isOne}}' bindtap='goodsReduce'>-</button>
+                <text>{{goodsNum}}</text>
+                <button bindtap='goodsAdd'>+</button>
+            </view>
+        </view>
+        <view class='goods-buy-bottom'>
             <text>立即购买</text>
         </view>
     </view>
-</view>
-<view class='goods-bottom-goosdNum'>
-    <text>{{carNum}}</text>
-</view>
-<view class='goods-addcar' hidden='{{isaddcar}}'>
-    <view class='goods-addcar-top'>
-        <view class='goods-addcar-top-left'>
-            <image src='../../images/hot_01.jpg'></image>
-        </view>
-        <view class='goods-addcar-top-right'>
-            <text class='goods-addcar-top-right-title'>{{goods[0].goodsName}}</text>
-            <text class='goods-addcar-top-right-price'>{{goods[0].price}}</text>
+    <view class='goods-addcar-buy' hidden='{{isab}}' bindtap='hiddenab'></view>
+    <view class='closebtn' hidden='{{isab}}' bindtap='hiddenab'>x</view>
+    <!-- 返回顶部按钮 -->
+    <view class="com-widget-goTop" bindtap="goTop" wx:if="{{floorstatus}}">
+        <view class="icon-gotop">
+            <text>__</text>
+            <text>↑</text>
+            <text>顶部</text>
         </view>
     </view>
-    <view style='background:#ffffff;border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;height:30rpx;'></view>
-    <view class='goods-addnum'>
-        <view class='goods-addnum-left'>
-            <text>购买数量</text>
-        </view>
-        <view class='goods-addnum-right'>
-            <button disabled='{{isOne}}' bindtap='goodsReduce'>-</button>
-            <text>{{goodsNum}}</text>
-            <button bindtap='goodsAdd'>+</button>
-        </view>
-    </view>
-    <view class='goods-addcar-bottom' bindtap='doAddCar'>
-        <text>加入购物车</text>
-    </view>
-</view>
-<view class='goods-buy' hidden='{{isbuy}}'>
-    <view class='goods-buy-top'>
-        <view class='goods-buy-top-left'>
-            <image src='../../images/hot_01.jpg'></image>
-        </view>
-        <view class='goods-buy-top-right'>
-            <text class='goods-buy-top-right-title'>{{goods[0].goodsName}}</text>
-            <text class='goods-buy-top-right-price'>{{goods[0].price}}</text>
-        </view>
-    </view>
-    <view style='background:#ffffff;border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;height:30rpx;'></view>
-    <view class='goods-addnum'>
-        <view class='goods-addnum-left'>
-            <text>购买数量</text>
-        </view>
-        <view class='goods-addnum-right'>
-            <button disabled='{{isOne}}' bindtap='goodsReduce'>-</button>
-            <text>{{goodsNum}}</text>
-            <button bindtap='goodsAdd'>+</button>
-        </view>
-    </view>
-    <view class='goods-buy-bottom'>
-        <text>立即购买</text>
-    </view>
-</view>
-<view class='goods-addcar-buy' hidden='{{isab}}' bindtap='hiddenab'></view>
-<view class='closebtn' hidden='{{isab}}' bindtap='hiddenab'>x</view>
+</scroll-view>

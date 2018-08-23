@@ -1,24 +1,36 @@
 <view wx:if='{{hasCar}}'>
-    <view class='goodscar' wx:for="{{goodsCar}}" wx:key="goods">
-        <view class='goodscar-left'>
-            <image src='{{item.gImage}}'></image>
-        </view>
-        <view class='goodscar-right'>
-            <view class='goodscar-right-top'>
-                <text>{{item.gName}}</text>
-            </view>
-            <view class='goodscar-right-bottom'>
-                <view class='goodscar-right-bottom-left'>
-                    <text>{{item.gPrice}}</text>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+        <checkbox-group name="pays">
+            <view class='goodscar' wx:for="{{goodsCar}}" wx:key="goods">
+                <view class='check'>
+                    <checkbox value="{{item.gId}}&&{{item.gPrice}}&&{{item.goodsNum}}" checked='{{isCheckAll}}'></checkbox>
                 </view>
-                <view class='goodscar-right-bottom-right'>
-                    <button disabled='{{item.isOne}}' bindtap='goodsReduce' data-id='{{index}}' data-num='{{item.goodsNum}}'>-</button>
-                    <text>{{item.goodsNum}}</text>
-                    <button bindtap='goodsAdd' data-id='{{index}}' data-num='{{item.goodsNum}}'>+</button>
+                <view class='goodscar-left'>
+                    <image src='{{item.gImage}}'></image>
+                </view>
+                <view class='goodscar-right'>
+                    <view class='goodscar-right-top'>
+                        <text>{{item.gName}}</text>
+                    </view>
+                    <view class='goodscar-right-bottom'>
+                        <view class='goodscar-right-bottom-left'>
+                            <text>￥{{item.gPrice}}</text>
+                        </view>
+                        <view class='goodscar-right-bottom-right'>
+                            <button disabled='{{item.isOne}}' bindtap='goodsReduce' data-id='{{index}}' data-num='{{item.goodsNum}}'>-</button>
+                            <text>{{item.goodsNum}}</text>
+                            <button bindtap='goodsAdd' data-id='{{index}}' data-num='{{item.goodsNum}}'>+</button>
+                        </view>
+                    </view>
                 </view>
             </view>
+        </checkbox-group>
+        <view class='car-bottom'>
+            <checkbox checked='{{isCheckAll}}' bindtap='checkAll'></checkbox>
+            <text>总价：<text>￥{{total}}</text></text>
+            <button formType="submit">下单</button>
         </view>
-    </view>
+    </form>
 </view>
 <view class='no' wx:else>
     <image src='../../images/goods-car.png'></image>

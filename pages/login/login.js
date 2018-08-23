@@ -1,21 +1,30 @@
-// pages/my/my.js
+// pages/login/login.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        mode: ["我的收藏", "我的订单", "我的地址", "联系客服", "关于我们"]
+
+    },
+
+    onGotUserInfo: function(e) {
+        if (e.detail.userInfo) {
+            wx.setStorageSync('userInfo', e.detail.userInfo);
+            this.setData({
+                userInfo: e.detail.userInfo
+            });
+            wx.switchTab({
+                url: '../../pages/index/index',
+            })
+        }
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        var userInfo = wx.getStorageSync('userInfo');
-        this.setData({
-            userInfo: userInfo
-        });
+
     },
 
     /**

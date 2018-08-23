@@ -1,16 +1,17 @@
 {
     "pages": [
+        "pages/car/car",
         "pages/index/index",
         "pages/goods/goods",
-        "pages/car/car",
         "pages/category/category",
         "pages/store/store",
-        "pages/my/my"
+        "pages/my/my",
+        "pages/login/login"
     ],
     "window": {
         "navigationBarBackgroundColor": "#ffffff",
         "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "微商城",
+        "navigationBarTitleText": "",
         "backgroundColor": "#eeeeee",
         "backgroundTextStyle": "light",
         "enablePullDownRefresh": false

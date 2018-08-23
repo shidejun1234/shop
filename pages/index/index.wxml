@@ -5,7 +5,7 @@
 </view>
 <!-- 顶部滚动条 -->
 <view class="swiper">
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='width:100%;height:{{hig}}rpx;'>
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" style='width:100%;height:{{hig}}rpx;'>
         <block wx:for="{{background}}" wx:key="this">
             <swiper-item>
                 <image src='{{item}}' mode='widthFix' style='width:100%;' bindload='imageLoad'></image>
@@ -64,10 +64,10 @@
             </view>
             <view class='goods-price'>
                 <view>
-                    <text>{{item.gPrice}}</text>
+                    <text>￥{{item.gPrice}}</text>
                 </view>
                 <view class='goods-oldPrice'>
-                    <text>{{item.gOldPrice}}</text>
+                    <text>￥{{item.gOldPrice}}</text>
                 </view>
             </view>
         </navigator>

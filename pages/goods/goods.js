@@ -5,19 +5,23 @@ Page({
      * 页面的初始数据
      */
     data: {
+        scrollTop: 0,
+        isBottom: true,
         background: ['../../images/hot_01.jpg', '../../images/hot_02.jpg', '../../images/hot_04.jpg', '../../images/hot_02.jpg'],
         indicatorDots: true,
         vertical: false,
         autoplay: true,
         interval: 2000,
         duration: 500,
+        circular: true,
         isCollect: false,
         aaaa: "asdfasdfaf",
         isaddcar: true,
         isbuy: true,
         isab: true,
         isOne: true,
-        goodsNum: 1
+        goodsNum: 1,
+        haveNum:true
     },
 
     imageLoad: function(e) {
@@ -143,9 +147,18 @@ Page({
                     });
                 }
             }
-        }else{
+        } else {
             that.setData({
                 carNum: that.data.goodsNum
+            });
+        };
+        if (that.data.carNum > 0) {
+            that.setData({
+                haveNum: false
+            });
+        } else {
+            that.setData({
+                haveNum: true
             });
         };
         wx.showToast({
@@ -156,13 +169,38 @@ Page({
         that.hiddenab();
     },
 
+    goTop: function(e) {
+        this.setData({
+            scrollTop: 0
+        })
+    },
+
+    scroll: function(e, res) {
+        // 容器滚动时将此时的滚动距离赋值给 this.data.scrollTop
+        if (e.detail.scrollTop > 500) {
+            this.setData({
+                floorstatus: true
+            });
+        } else {
+            this.setData({
+                floorstatus: false
+            });
+        }
+    },
+
+    scrollBottom: function() {
+        this.setData({
+            isBottom: false
+        })
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
         var that = this;
         wx.request({
-            url: 'http://120.77.251.239/shop/goodsdetails.php',
+            url: 'https://api.it120.cc/jimpdo/api/transmit/644',
             header: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
@@ -172,9 +210,9 @@ Page({
             },
             success: function(res) {
                 that.setData({
-                    goods: res.data
+                    goods: res.data.data
                 });
-                var article = res.data.gDetails
+                var article = res.data.data.gDetails
                 WxParse.wxParse('article', 'html', article, that, 5);
             }
         });
@@ -187,6 +225,15 @@ Page({
                     });
                 }
             }
+        };
+        if(this.data.carNum>0){
+            this.setData({
+                haveNum:false
+            });
+        }else{
+            this.setData({
+                haveNum: true
+            });
         }
     },
 

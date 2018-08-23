@@ -5,19 +5,21 @@ Page({
      * 页面的初始数据
      */
     data: {
+        isCheckAll: true,
+        total:300
     },
 
     goodsAdd(e) {
         var id = e.currentTarget.dataset.id;
         var num = e.currentTarget.dataset.num;
         var goodsCar = wx.getStorageSync('goodsCar');
-        goodsCar[id].goodsNum+=1;
+        goodsCar[id].goodsNum += 1;
         if (goodsCar[id].goodsNum > 1) {
-            goodsCar[id].isOne=false;
+            goodsCar[id].isOne = false;
         }
         wx.setStorageSync('goodsCar', goodsCar);
         this.setData({
-            goodsCar:goodsCar
+            goodsCar: goodsCar
         });
     },
 
@@ -32,6 +34,16 @@ Page({
         wx.setStorageSync('goodsCar', goodsCar);
         this.setData({
             goodsCar: goodsCar
+        });
+    },
+
+    formSubmit: function(e) {
+        console.log(e);
+    },
+
+    checkAll: function() {
+        this.setData({
+            isCheckAll: !this.data.isCheckAll
         });
     },
 
@@ -54,12 +66,12 @@ Page({
      */
     onShow: function() {
         var goodsCar = wx.getStorageSync('goodsCar');
-        if(goodsCar!=""){
+        if (goodsCar != "") {
             this.setData({
                 goodsCar: goodsCar,
                 hasCar: true
             });
-        }        
+        }
     },
 
     /**
