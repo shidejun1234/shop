@@ -83,8 +83,8 @@ Page({
         wx.setStorageSync('checkAll', checkAll);
         this.setData({
             goodsCar: goodsCar,
-            checkAll:checkAll,
-            total:total
+            checkAll: checkAll,
+            total: total
         })
     },
 
@@ -101,7 +101,7 @@ Page({
         for (var i = 0; i < goodsCar.length; i++) {
             if (gIdArr.indexOf(goodsCar[i].gId) == -1) {
                 goodsCar[i].isCheck = false;
-                checkAll=false;
+                checkAll = false;
             } else {
                 goodsCar[i].isCheck = true;
             }
@@ -110,39 +110,44 @@ Page({
         wx.setStorageSync('checkAll', checkAll);
         this.setData({
             total: total,
-            checkAll:checkAll
+            checkAll: checkAll
         });
     },
 
-    deleteGoods:function(e){
-        var that=this;
-        var goodsCar=wx.getStorageSync('goodsCar');
-        var arr=[];
+    deleteGoods: function(e) {
+        var that = this;
+        var goodsCar = wx.getStorageSync('goodsCar');
+        var arr = [];
+        var total = 0;
         wx.showModal({
             title: '提示',
             content: '确定要删除此宝贝吗？',
-            success: function (res) {
+            success: function(res) {
                 if (res.confirm) {
-                    for (var i = 0; i < goodsCar.length;i++){
-                        if (goodsCar[i].gId != e.currentTarget.dataset.gid){
+                    for (var i = 0; i < goodsCar.length; i++) {
+                        if (goodsCar[i].gId != e.currentTarget.dataset.gid) {
                             arr.push(goodsCar[i]);
-                        }else{
+                            if (goodsCar[i].isCheck == true) {
+                                total += Number(goodsCar[i].gPrice) * Number(goodsCar[i].goodsNum);
+                            }
+                        } else {
                             continue;
                         }
                     }
                     wx.setStorageSync('goodsCar', arr);
-                    if(arr==""){
+                    if (arr == "") {
                         that.setData({
-                            hasCar:false
+                            hasCar: false
                         })
                     }
                     that.setData({
-                        goodsCar:arr
+                        goodsCar: arr,
+                        total: total
                     });
                     wx.showToast({
                         title: '删除成功',
-                        icon:'success',
-                        duration:1000
+                        icon: 'success',
+                        duration: 1000
                     })
                 } else if (res.cancel) {
                     return false;
