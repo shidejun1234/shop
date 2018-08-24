@@ -1,4 +1,4 @@
-// pages/index/index.js
+// pages/search/search.js
 Page({
 
     /**
@@ -6,88 +6,40 @@ Page({
      */
     data: {
         page: 1,
-        isBottom: true,
-        background: ['../../images/hot_01.jpg', '../../images/hot_02.jpg', '../../images/hot_04.jpg', '../../images/hot_02.jpg'],
-        indicatorDots: false,
-        vertical: false,
-        autoplay: true,
-        interval: 2000,
-        duration: 500,
-        circular:true,
-        category: [{
-            'image': '../../images/qiandao.png',
-            'category': '签到'
-        }, {
-            'image': '../../images/youhuiquan.png',
-            'category': '优惠券'
-        }, {
-            'image': '../../images/penzai.png',
-            'category': '盆栽'
-        }, {
-            'image': '../../images/taideng.png',
-            'category': '台灯'
-        }, {
-            'image': '../../images/shenqi.png',
-            'category': '神器'
-        }, {
-            'image': '../../images/zahuopu.png',
-            'category': '杂货铺'
-        }, {
-            'image': '../../images/yusan.png',
-            'category': '雨伞'
-        }, {
-            'image': '../../images/wenju.png',
-            'category': '文具'
-        }, {
-            'image': '../../images/wazi.png',
-            'category': '袜子'
-        }, {
-            'image': '../../images/muyu.png',
-            'category': '沐浴'
-        }],
-        brand: [{
-            'image': '../../images/hot_01.jpg'
-        }, {
-            'image': '../../images/hot_04.jpg'
-        }, {
-            'image': '../../images/hot_01.jpg'
-        }, {
-            'image': '../../images/hot_04.jpg'
-        }, {
-            'image': '../../images/hot_01.jpg'
-        }],
-        scroll: [{
-            'image': '../../images/hot_01.jpg'
-        }, {
-            'image': '../../images/hot_04.jpg'
-        }, {
-            'image': '../../images/hot_01.jpg'
-        }, {
-            'image': '../../images/hot_04.jpg'
-        }, {
-            'image': '../../images/hot_01.jpg'
-        }],
-        goods: [],
-    },
-
-    imageLoad: function(e) {
-        var width = e.detail.width;
-        var height = e.detail.height;
-        this.setData({
-            hig: 750 / (width / height)
-        });
-    },
-
-    search:function(e){
-        wx.navigateTo({
-            url: '../../pages/search/search?key=' + e.detail.value.key
-        })
+        hasgoods: false,
+        isBottom:true
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {},
+    onLoad: function(options) {
+        var that=this;
+        wx.request({
+            url: 'https://api.it120.cc/jimpdo/api/transmit/646',
+            data:{
+                key: options.key,
+                page:0
+            },
+            success:function(res){
+                if (res.data.data =="sorry,找不到该宝贝"){
+                    hasgoods: false
+                } else {
+                    that.setData({
+                        hasgoods: true,
+                        goods: res.data.data,
+                        key: options.key
+                    });
+                }
+            }
+        })
+    },
+
+    search: function (e) {
+        wx.navigateTo({
+            url: '../../pages/search/search?key=' + e.detail.value.key
+        })
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -120,18 +72,19 @@ Page({
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function() {
+    onPullDownRefresh: function () {
         wx.showNavigationBarLoading();
         var that = this;
         wx.request({
-            url: 'https://api.it120.cc/jimpdo/api/transmit/643',
+            url: 'https://api.it120.cc/jimpdo/api/transmit/646',
             header: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
             data: {
-                page: 0
+                page: 0,
+                key:that.data.key
             },
-            success: function(res) {
+            success: function (res) {
                 that.setData({
                     goods: res.data.data,
                     page: 2,
@@ -146,7 +99,7 @@ Page({
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function() {
+    onReachBottom: function () {
         var that = this;
         if (that.data.isBottom == true) {
             wx.showLoading({
@@ -155,14 +108,15 @@ Page({
             var page = that.data.page;
             page = (page - 1) * 10;
             wx.request({
-                url: 'https://api.it120.cc/jimpdo/api/transmit/643',
+                url: 'https://api.it120.cc/jimpdo/api/transmit/646',
                 header: {
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
                 data: {
-                    page: page
+                    page: page,
+                    key:that.data.key
                 },
-                success: function(res) {
+                success: function (res) {
                     if (res.data.data == '数据已全部加载') {
                         that.setData({
                             isBottom: false
@@ -179,7 +133,7 @@ Page({
                         //     jsonstr = '[' + goodsstr + ',' + jsonstr + ']';
                         // }
                         // var jsonarray = JSON.parse(jsonstr);
-                        var jsonarray=that.data.goods;
+                        var jsonarray = that.data.goods;
                         for (var i = 0; i < res.data.data.length; i++) {
                             jsonarray.push(res.data.data[i]);
                         }
@@ -197,11 +151,7 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {
-        return {
-            title: '微信商城',
-            desc: '微信商城',
-            path: '/pages/index/index'
-        }
-    },
+    onShareAppMessage: function() {
+
+    }
 })

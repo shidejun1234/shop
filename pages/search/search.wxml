@@ -1,0 +1,45 @@
+<!-- 搜索 -->
+<form bindsubmit="search">
+    <view class='search'>
+        <input placeholder='请搜索商品' name='key'></input>
+        <button form-type='submit'>
+        </button>
+        <image src='../../images/search.png'></image>
+    </view>
+</form>
+<view wx:if="{{hasgoods}}">
+    <!-- 热门商品 -->
+    <view style='text-align:center;padding-top:80rpx;background:#ffffff;'>
+        <text style='font-weight:bold;'>为你找到以下宝贝</text>
+        <view style='margin:0 auto;border-top:1px solid #000000;margin-top:10rpx;width:80%;'></view>
+        <view style='margin:0 auto;border-top:1px solid #000000;margin-top:5rpx;width:75%;'></view>
+        <view style='margin:0 auto;border-top:1px solid #000000;margin-top:5rpx;padding-bottom:5rpx;width:80%;'></view>
+    </view>
+    <view class='goods'>
+        <view class='half' wx:for="{{goods}}" wx:key="goods">
+            <navigator url="/pages/goods/goods?gId={{item.gId}}" hover-class="navigator-hover">
+                <image src='{{item.gImage}}'></image>
+                <view class='goods-name'>
+                    <text>{{item.gName}}</text>
+                </view>
+                <view class='goods-price'>
+                    <view>
+                        <text>￥{{item.gPrice}}</text>
+                    </view>
+                    <view class='goods-oldPrice'>
+                        <text>￥{{item.gOldPrice}}</text>
+                    </view>
+                </view>
+            </navigator>
+        </view>
+    </view>
+    <view class='foot' hidden='{{isBottom}}'>
+        <text>————————————不要扯了，已经扯到底了————————————</text>
+    </view>
+</view>
+<view class='no' wx:else>
+    <image src='../../images/sorry.png'></image>
+    <navigator url="../index/index" open-type="switchTab" hover-class="other-navigator-hover">
+        <button>看看其他的</button>
+    </navigator>
+</view>
