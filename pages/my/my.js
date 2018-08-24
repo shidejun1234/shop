@@ -13,9 +13,12 @@ Page({
      */
     onLoad: function(options) {
         var userInfo = wx.getStorageSync('userInfo');
-        this.setData({
-            userInfo: userInfo
-        });
+        if (userInfo){
+            this.setData({
+                userInfo: userInfo,
+                isLogin:true
+            });
+        }        
     },
 
     /**

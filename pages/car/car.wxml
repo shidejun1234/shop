@@ -1,7 +1,7 @@
 <view wx:if='{{hasCar}}'>
     <form bindsubmit="formSubmit" bindreset="formReset">
         <checkbox-group name="pays" bindchange="aaa">
-            <view class='goodscar' wx:for="{{goodsCar}}" wx:key="goods">
+            <view class='goodscar' wx:for="{{goodsCar}}" wx:key="{{item.gId}}" bindlongpress="deleteGoods" data-gid="{{item.gId}}">
                 <view class='check'>
                     <checkbox value="{{item.gId}}&&{{item.gPrice}}&&{{item.goodsNum}}" checked='{{item.isCheck}}'></checkbox>
                 </view>

@@ -114,6 +114,43 @@ Page({
         });
     },
 
+    deleteGoods:function(e){
+        var that=this;
+        var goodsCar=wx.getStorageSync('goodsCar');
+        var arr=[];
+        wx.showModal({
+            title: '提示',
+            content: '确定要删除此宝贝吗？',
+            success: function (res) {
+                if (res.confirm) {
+                    for (var i = 0; i < goodsCar.length;i++){
+                        if (goodsCar[i].gId != e.currentTarget.dataset.gid){
+                            arr.push(goodsCar[i]);
+                        }else{
+                            continue;
+                        }
+                    }
+                    wx.setStorageSync('goodsCar', arr);
+                    if(arr==""){
+                        that.setData({
+                            hasCar:false
+                        })
+                    }
+                    that.setData({
+                        goodsCar:arr
+                    });
+                    wx.showToast({
+                        title: '删除成功',
+                        icon:'success',
+                        duration:1000
+                    })
+                } else if (res.cancel) {
+                    return false;
+                }
+            }
+        });
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */

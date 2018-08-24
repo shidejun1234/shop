@@ -11,13 +11,14 @@ Page({
     onGotUserInfo: function(e) {
         if (e.detail.userInfo) {
             wx.setStorageSync('userInfo', e.detail.userInfo);
-            this.setData({
-                userInfo: e.detail.userInfo
-            });
+            // wx.request({
+            //     url: '',
+            // })
             wx.switchTab({
                 url: '../../pages/index/index',
             })
         }
+        console.log(e)
     },
 
     /**
