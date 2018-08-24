@@ -21,6 +21,19 @@ Page({
         }        
     },
 
+    onGotUserInfo: function (e) {
+        if (e.detail.userInfo) {
+            wx.setStorageSync('userInfo', e.detail.userInfo);
+            // wx.request({
+            //     url: '',
+            // })
+            wx.switchTab({
+                url: '../../pages/index/index',
+            })
+        }
+        console.log(e)
+    },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
