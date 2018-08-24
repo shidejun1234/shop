@@ -5,7 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        page: 1,
+        page: 2,
         hasgoods: false,
         isBottom:true
     },

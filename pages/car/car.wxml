@@ -28,7 +28,7 @@
         <view style='margin-bottom:80rpx;height:1rpx;'></view>
         <view class='car-bottom'>
             <checkbox checked='{{checkAll}}' bindtap='checkAll'></checkbox>
-            <text>总价：<text>￥{{total}}</text></text>
+            <text>合计：<text>￥{{total}}</text></text>
             <button formType="submit">下单</button>
         </view>
     </form>
