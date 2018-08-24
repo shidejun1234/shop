@@ -115,7 +115,8 @@ Page({
             gName: that.data.goods.gName,
             gPrice: that.data.goods.gPrice,
             goodsNum: that.data.goodsNum,
-            isOne: that.data.isOne
+            isOne: that.data.isOne,
+            isCheck:true
         }
         var goodsCar = wx.getStorageSync('goodsCar');
         if (goodsCar) {

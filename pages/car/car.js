@@ -5,13 +5,13 @@ Page({
      * 页面的初始数据
      */
     data: {
-        isCheckAll: true,
-        total:300
+        total: 0
     },
 
     goodsAdd(e) {
         var id = e.currentTarget.dataset.id;
         var num = e.currentTarget.dataset.num;
+        var total = this.data.total;
         var goodsCar = wx.getStorageSync('goodsCar');
         goodsCar[id].goodsNum += 1;
         if (goodsCar[id].goodsNum > 1) {
@@ -21,11 +21,18 @@ Page({
         this.setData({
             goodsCar: goodsCar
         });
+        if (goodsCar[id].isCheck == true) {
+            total += Number(goodsCar[id].gPrice);
+            this.setData({
+                total: total
+            });
+        }
     },
 
     goodsReduce(e) {
         var id = e.currentTarget.dataset.id;
         var num = e.currentTarget.dataset.num;
+        var total = this.data.total;
         var goodsCar = wx.getStorageSync('goodsCar');
         goodsCar[id].goodsNum -= 1;
         if (goodsCar[id].goodsNum < 2) {
@@ -35,6 +42,12 @@ Page({
         this.setData({
             goodsCar: goodsCar
         });
+        if (goodsCar[id].isCheck == true) {
+            total -= Number(goodsCar[id].gPrice);
+            this.setData({
+                total: total
+            });
+        }
     },
 
     formSubmit: function(e) {
@@ -42,8 +55,62 @@ Page({
     },
 
     checkAll: function() {
+        var goodsCar = wx.getStorageSync('goodsCar');
+        var checkAll = wx.getStorageSync('checkAll');
+        var total = 0;
+        for (var i = 0; i < goodsCar.length; i++) {
+            if (goodsCar[i].isCheck == false) {
+                checkAll = false;
+            }
+        }
+        if (checkAll) {
+            for (var i = 0; i < goodsCar.length; i++) {
+                if (goodsCar[i].isCheck == true) {
+                    goodsCar[i].isCheck = false;
+                }
+            }
+            checkAll = false;
+        } else {
+            for (var i = 0; i < goodsCar.length; i++) {
+                if (goodsCar[i].isCheck == false) {
+                    goodsCar[i].isCheck = true;
+                }
+                total += Number(goodsCar[i].gPrice) * Number(goodsCar[i].goodsNum);
+            }
+            checkAll = true;
+        }
+        wx.setStorageSync('goodsCar', goodsCar);
+        wx.setStorageSync('checkAll', checkAll);
         this.setData({
-            isCheckAll: !this.data.isCheckAll
+            goodsCar: goodsCar,
+            checkAll:checkAll,
+            total:total
+        })
+    },
+
+    aaa: function(e) {
+        var goodsCar = wx.getStorageSync('goodsCar');
+        var checkAll = wx.getStorageSync('checkAll');
+        var total = 0;
+        var gIdArr = [];
+        for (var i = 0; i < e.detail.value.length; i++) {
+            var arr = e.detail.value[i].split("&&");
+            total += Number(arr[1]) * Number(arr[2]);
+            gIdArr.push(arr[0]);
+        }
+        for (var i = 0; i < goodsCar.length; i++) {
+            if (gIdArr.indexOf(goodsCar[i].gId) == -1) {
+                goodsCar[i].isCheck = false;
+                checkAll=false;
+            } else {
+                goodsCar[i].isCheck = true;
+            }
+        }
+        wx.setStorageSync('goodsCar', goodsCar);
+        wx.setStorageSync('checkAll', checkAll);
+        this.setData({
+            total: total,
+            checkAll:checkAll
         });
     },
 
@@ -66,12 +133,23 @@ Page({
      */
     onShow: function() {
         var goodsCar = wx.getStorageSync('goodsCar');
+        var checkAll = wx.getStorageSync('checkAll');
+        var total = 0;
         if (goodsCar != "") {
             this.setData({
                 goodsCar: goodsCar,
-                hasCar: true
+                hasCar: true,
+                checkAll: checkAll
             });
         }
+        for (var i = 0; i < goodsCar.length; i++) {
+            if (goodsCar[i].isCheck == true) {
+                total += Number(goodsCar[i].gPrice) * Number(goodsCar[i].goodsNum);
+            }
+        }
+        this.setData({
+            total: total
+        })
     },
 
     /**

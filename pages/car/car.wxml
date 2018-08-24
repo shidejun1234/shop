@@ -1,9 +1,9 @@
 <view wx:if='{{hasCar}}'>
     <form bindsubmit="formSubmit" bindreset="formReset">
-        <checkbox-group name="pays">
+        <checkbox-group name="pays" bindchange="aaa">
             <view class='goodscar' wx:for="{{goodsCar}}" wx:key="goods">
                 <view class='check'>
-                    <checkbox value="{{item.gId}}&&{{item.gPrice}}&&{{item.goodsNum}}" checked='{{isCheckAll}}'></checkbox>
+                    <checkbox value="{{item.gId}}&&{{item.gPrice}}&&{{item.goodsNum}}" checked='{{item.isCheck}}'></checkbox>
                 </view>
                 <view class='goodscar-left'>
                     <image src='{{item.gImage}}'></image>
@@ -25,8 +25,9 @@
                 </view>
             </view>
         </checkbox-group>
+        <view style='margin-bottom:80rpx;height:1rpx;'></view>
         <view class='car-bottom'>
-            <checkbox checked='{{isCheckAll}}' bindtap='checkAll'></checkbox>
+            <checkbox checked='{{checkAll}}' bindtap='checkAll'></checkbox>
             <text>总价：<text>￥{{total}}</text></text>
             <button formType="submit">下单</button>
         </view>
