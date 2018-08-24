@@ -4,23 +4,22 @@ App({
      * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
      */
     onLaunch: function() {
-        var userInfo = wx.getStorageSync('userInfo');
-        wx.getSetting({
-            success: function (res) {
-                if (!userInfo) {
-                    wx.redirectTo({
-                        url: '../../pages/login/login',
-                    });
-                }
-            }
-        });
+        
     },
 
     /**
      * 当小程序启动，或从后台进入前台显示，会触发 onShow
      */
     onShow: function(options) {
-
+        wx.getSetting({
+            success: function (res) {
+                if (!res.authSetting['scope.userInfo']) {
+                    wx.redirectTo({
+                        url: '../../pages/login/login',
+                    });
+                }
+            }
+        });
     },
 
     /**
