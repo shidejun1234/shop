@@ -130,6 +130,13 @@ page{
     height: 50rpx;
 }
 
+.goods-bottom-left-item contact-button{
+    margin: 0 auto;
+    margin-top: 10rpx;
+    width: 50rpx;
+    height: 40rpx;
+}
+
 .goods-bottom-goosdNum{
     width: 25rpx;
     height: 25rpx;

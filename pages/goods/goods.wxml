@@ -63,7 +63,7 @@
                 <text>电话</text>
             </view>
             <view class='goods-bottom-left-item'>
-                <image src='../../images/goods-message.png'></image>
+                <contact-button size="15" session-from="weapp"></contact-button>
                 <text>客服</text>
             </view>
             <view class='goods-bottom-left-item' bindtap='car'>
