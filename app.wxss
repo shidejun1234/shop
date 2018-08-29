@@ -27,3 +27,10 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
    transform:translate(-50%, -50%) scale(1);
    -webkit-transform:translate(-50%, -50%) scale(1);
 }
+/**app.wxss**/
+.container {
+  height: 100%;
+  box-sizing: border-box;
+  background-color: #f4f4f4;
+}
+
