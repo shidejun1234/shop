@@ -2,43 +2,51 @@ Page{
     background: #ffffff;
 }
 .aside{
-	width:4rem;
+    position: fixed;
+    background: #e5e5e5;
+	width:20%;
 	border-right: 1px solid #ddd;
-	font-size: .85rem;
+	font-size: 30rpx;
+    height: 100%;
 }
 .type-nav{
 	position: relative;
-	padding:.7rem .3rem;
+	padding:30rpx 20rpx;
 	text-align: center;
 	border-bottom: 1px solid #ddd;
 	z-index: 10;
 }
 .type-nav.selected{
-	margin-right:-1px;
-	padding-left:-1px;
+	margin-right:-1rpx;
+	padding-left:-1rpx;
 	color:#333;
 	background-color:#fff;
 }
 .content{
+    margin-left: 20%;
 	background-color: #fff;
 }
 
-.dish{
-	margin-left: 1rem;
-	padding: 1rem;
+.goods{
+	margin-left: 20rpx;
+	padding: 20rpx;
 	border-bottom: 1px solid #ddd;
 }
-.dish .title{
+.goods .title{
 	display: block;
-	font-size: 1rem;
+    height: 100rpx;
+	font-size: 25rpx;
+    overflow: hidden;
 }
-.dish p{
-	color: orange;
-	font-size: .75rem;
+.goods p{
+	color: #ff0000;
+	font-size: 25rpx;
 }
-.dish .add-btn{
-	width: 3rem;
-	text-align: right;
+.oldPrice{
+    color: #5e5e5e;
+    margin-left: 20rpx;
+    text-decoration: line-through;
+    font-size: 20rpx;
 }
 
 .flex-wrap{
@@ -47,13 +55,25 @@ Page{
 .flex-item{
 	flex: 1;
 }
+.flex-item-left{
+	width: 35%;
+}
+.flex-item-right{
+	width: 65%;
+}
+.flex-item-left image{
+    width: 150rpx;
+    height: 150rpx;
+}
 .flex-wrap.flex-direction-col{
 	flex-direction: column;
 }
 .flex-wrap.flex-direction-row{
+    display: flex;
 	flex-direction: row;
 }
-.flex-item image{
-    width: 100rpx;
-    height: 100rpx;
+.no{
+    margin: 0 auto;
+    margin-top: 30%;
+    text-align: center;
 }

@@ -1,11 +1,10 @@
 var app = getApp()
 Page({
     data: {
+        page: 1,
         curNav: 1,
-        curIndex: 0,
-        cart: [],
-        navList: [
-            {
+        havgoods: false,
+        navList: [{
                 id: 1,
                 name: '盆栽'
             },
@@ -37,98 +36,94 @@ Page({
                 id: 8,
                 name: '沐浴'
             }
-        ],
-        dishesList: [
-            [
-                {
-                    name: "啊啊啊",
-                    price: 38,
-                    num: 1,
-                    id: 1
-                },
-                {
-                    name: "啊啊啊",
-                    price: 58,
-                    num: 1,
-                    id: 29
-                },
-                {
-                    name: "啊啊啊",
-                    price: 88,
-                    num: 1,
-                    id: 2
-                }
-            ],
-            [
-                {
-                    name: "啊啊啊",
-                    price: 18,
-                    num: 1,
-                    id: 3
-                },
-                {
-                    name: "啊啊啊",
-                    price: 58,
-                    num: 1,
-                    id: 4
-                }
-            ],
-            [
-                {
-                    name: "啊啊啊",
-                    price: 18,
-                    num: 1,
-                    id: 5
-                },
-                {
-                    name: "啊啊啊",
-                    price: 8,
-                    num: 1,
-                    id: 6
-                }
-            ],
-            []
-        ],
-        dishes: []
+        ]
     },
     selectNav(event) {
-        let id = event.target.dataset.id,
-            index = parseInt(event.target.dataset.index);
-        self = this;
-        this.setData({
-            curNav: id,
-            curIndex: index
-        })
-    },
-    // 选择菜品
-    selectDish(event) {
-        let dish = event.currentTarget.dataset.dish;
-        let flag = true;
-        let cart = this.data.cart;
-
-        if (cart.length > 0) {
-            cart.forEach(function (item, index) {
-                if (item == dish) {
-                    cart.splice(index, 1);
-                    flag = false;
+        var that = this;
+        var id = event.target.dataset.id;
+        wx.request({
+            url: 'https://api.it120.cc/jimpdo/api/transmit/651',
+            data: {
+                page: 0,
+                cId: id
+            },
+            success: function(res) {
+                var goodsList = [];
+                if (res.data.data != "数据已全部加载") {
+                    goodsList = res.data.data;
+                    that.setData({
+                        curNav: id,
+                        goodsList: goodsList,
+                        havgoods: true,
+                        page: 1
+                    })
+                } else {
+                    that.setData({
+                        curNav: id,
+                        goodsList: goodsList,
+                        havgoods: false,
+                        page: 1
+                    })
                 }
-            })
-        }
-    },
-    setStatus(dishId) {
-        let dishes = this.data.dishesList;
-        for (let dish of dishes) {
-            dish.forEach((item) => {
-                if (item.id == dishId) {
-                    item.status = !item.status || false
-                }
-            })
-        }
-
-        this.setData({
-            dishesList: this.data.dishesList
+            }
         })
     },
     onLoad() {
+        var that = this;
+        wx.request({
+            url: 'https://api.it120.cc/jimpdo/api/transmit/651',
+            data: {
+                page: 0,
+                cId: 1
+            },
+            success: function(res) {
+                var goodsList = [];
+                if (res.data.data != "数据已全部加载") {
+                    goodsList = res.data.data;
+                    that.setData({
+                        curNav: 1,
+                        goodsList: goodsList,
+                        havgoods: true
+                    })
+                } else {
+                    that.setData({
+                        curNav: 1,
+                        goodsList: goodsList,
+                        havgoods: false
+                    })
+                }
+            }
+        })
+    },
+
+    onReachBottom: function() {
+        wx.showLoading({
+            title: '玩命加载中',
+        })
+        var that = this;
+        var page = that.data.page;
+        var curNav = that.data.curNav;
+        page = page * 10;
+        wx.request({
+            url: 'https://api.it120.cc/jimpdo/api/transmit/651',
+            data: {
+                page: page,
+                cId: curNav
+            },
+            success: function(res) {
+                if (res.data.data != "数据已全部加载") {
+                    var jsonarray = that.data.goodsList;
+                    for (var i = 0; i < res.data.data.length; i++) {
+                        jsonarray.push(res.data.data[i]);
+                    }
+                    that.setData({
+                        goodsList: jsonarray
+                    })
+                    that.data.page += 1;
+                }
+                wx.hideLoading();
+            }
+        })
     }
+
 })

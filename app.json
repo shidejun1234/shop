@@ -10,7 +10,7 @@
         "pages/search/search"
     ],
     "window": {
-        "navigationBarBackgroundColor": "#00cd00",
+        "navigationBarBackgroundColor": "#1aaaa1",
         "navigationBarTextStyle": "black",
         "navigationBarTitleText": "",
         "backgroundColor": "#eeeeee",

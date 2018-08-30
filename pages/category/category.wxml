@@ -1,24 +1,32 @@
 <view class="container flex-wrap flex-direction-row">
     <!-- left aside -->
     <view class="aside flex-wrap flex-direction-col">
-        <block wx:for="{{navList}}">
+        <block wx:for="{{navList}}" wx:key="id">
             <text class="type-nav {{curNav == item.id ? 'selected' : ''}}" bindtap="selectNav" data-index="{{index}}" data-id="{{item.id}}">{{item.name}}</text>
         </block>
     </view>
 
 
     <view class='content flex-item'>
-        <block wx:for="{{dishesList[curIndex]}}">
-            <view class="dish flex-wrap flex-direction-row" catchtap="selectDish" data-dish="{{item.id}}">
-                <view class="flex-item">
-                    <image src='../../images/hot_01.jpg'></image>
+        <view wx:if="{{havgoods}}">
+            <block wx:for="{{goodsList}}" wx:key="gId">
+        <navigator url="/pages/goods/goods?gId={{item.gId}}" hover-class="navigator-hover">
+                <view class="goods flex-wrap flex-direction-row">
+                    <view class="flex-item-left">
+                        <image src='{{item.gImage}}'></image>
+                    </view>
+                    <view class="flex-item-right">
+                        <text class="title">{{item.gName}}</text>
+                        <p>￥{{item.gPrice}}</p>
+                        <text class='oldPrice'>￥{{item.gOldPrice}}</text>
+                    </view>
                 </view>
-                <view class="flex-item">
-                    <text class="title">{{item.name}}</text>
-                    <p>￥{{item.price}}</p>
-                </view>
-            </view>
-        </block>
+                </navigator>
+            </block>
+        </view>
+        <view class='no' wx:else>
+            <text>sorry,该类目下暂时没有商品</text>
+        </view>
     </view>
 
 
