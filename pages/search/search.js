@@ -6,7 +6,7 @@ Page({
      */
     data: {
         page: 2,
-        hasgoods: false,
+        hasgoods: true,
         isBottom:true
     },
 
@@ -15,6 +15,9 @@ Page({
      */
     onLoad: function(options) {
         var that=this;
+        wx.showLoading({
+            title: '玩命加载中',
+        })
         wx.request({
             url: 'https://api.it120.cc/jimpdo/api/transmit/646',
             data:{
@@ -23,7 +26,9 @@ Page({
             },
             success:function(res){
                 if (res.data.data =="sorry,找不到该宝贝"){
-                    hasgoods: false
+                    that.setData({
+                        hasgoods: false
+                    });
                 } else {
                     that.setData({
                         hasgoods: true,
@@ -31,13 +36,33 @@ Page({
                         key: options.key
                     });
                 }
+                wx.hideLoading();
             }
         })
     },
 
     search: function (e) {
-        wx.navigateTo({
-            url: '../../pages/search/search?key=' + e.detail.value.key
+        var that=this;
+        wx.request({
+            url: 'https://api.it120.cc/jimpdo/api/transmit/646',
+            data: {
+                key: e.detail.value.key,
+                page: 0
+            },
+            success: function (res) {
+                if (res.data.data == "sorry,找不到该宝贝") {
+                    that.setData({
+                        hasgoods: false
+                    });
+                } else {
+                    that.setData({
+                        hasgoods: true,
+                        goods: res.data.data,
+                        key: e.detail.value.key
+                    });
+                }
+                wx.hideLoading();
+            }
         })
     },
 
