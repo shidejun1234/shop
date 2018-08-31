@@ -6,13 +6,6 @@
     padding: 10rpx 10rpx;
 }
 
-.check{
-    height: 150rpx;
-    line-height: 150rpx;
-    width: 5%;
-    margin-right: 10rpx;
-}
-
 .goodscar-left{
     width: 20%;
     padding: 10rpx;
@@ -106,7 +99,7 @@
 }
 
 .car-bottom button{
-    background: #2fb12f;
+    background: #ff7e3a;
     color: #ffffff;
     margin: 0 auto;
     margin-top: 10rpx;

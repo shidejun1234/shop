@@ -51,7 +51,20 @@ Page({
     },
 
     formSubmit: function(e) {
-        console.log(e);
+        var pays = e.detail.value.pays;
+        if (pays != "") {
+            var goodsid = [];
+            var goodsnum = [];
+            for (var i = 0; i < pays.length; i++) {
+                goodsid.push(pays[i].split("&&")[0]);
+                goodsnum.push(pays[i]);
+            }
+            goodsid = goodsid.sort().toString();
+            goodsnum = goodsnum.toString().replace(/&/g, "$$");
+            wx.navigateTo({
+                url: '../pay/pay?goodsid=' + goodsid + '&goodsnum=' + goodsnum + '&total=' + e.detail.value.total,
+            })
+        }
     },
 
     checkAll: function() {

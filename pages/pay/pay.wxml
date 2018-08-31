@@ -1,0 +1,50 @@
+<!--pages/pay/pay.wxml-->
+<view class='pay_address_wrap'>
+    <image class='address_icon' src='../../images/icon-dw.png'></image>
+    <view class='pay_address'>
+        <view class='pay_contact'>
+            <text>李四</text>
+            <text>13022222222</text>
+        </view>
+        <view>
+            广东省广州市天河区广东省广州市天河区
+        </view>
+    </view>
+    <image src='../../images/icon-arrow.png' class='pay_address_sel'></image>
+</view>
+
+<view class='pay_order_wrap'>
+    <view class='table_header'>
+        <view class='table_goods_name'>商品</view>
+        <view class='table_goods_num'>数量</view>
+        <view class='table_goods_con'>单价</view>
+    </view>
+    <view class="table_content_item" wx:for="{{goods}}" wx:key="{{item.gId}}">
+        <view class='table_goods_name'>{{item.gName}}</view>
+        <view class='table_goods_num'>{{item.gNum}}</view>
+        <view class='table_goods_con'>￥{{item.gPrice}}</view>
+    </view>
+</view>
+
+<view class='pay_remarks'>
+    <input placeholder='填写备注' type='text'></input>
+</view>
+
+
+<view class='car_bot'>
+    <view class='car_bot_wrap'>
+        合计
+        <text class='car_total_monay'> ￥{{total}}</text>
+        <view class='car_order_confirm' bindtap='toPay'>提交订单</view>
+    </view>
+</view>
+
+<view class='bb' hidden='{{ispay}}' bindtap='bb'></view>
+
+<view class="page-section" hidden='{{ispay}}'>
+    <view>支付金额</view>
+    <view class="price">￥{{total}}</view>
+    <view class="btn-area">
+        <button type="primary" bindtap="requestPayment" loading="{{loading}}">支付</button>
+    </view>
+</view>

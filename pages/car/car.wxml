@@ -29,8 +29,9 @@
         <view class='car-bottom'>
             <checkbox checked='{{checkAll}}' bindtap='checkAll'></checkbox>
             <text>合计：<text>￥{{total}}</text></text>
-            <button formType="submit">下单</button>
+            <button formType="submit">结算</button>
         </view>
+        <input value="{{total}}" name="total" hidden='true'></input>
     </form>
 </view>
 <view class='no' wx:else>
