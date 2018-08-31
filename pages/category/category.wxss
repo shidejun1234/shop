@@ -77,3 +77,15 @@ Page{
     margin-top: 30%;
     text-align: center;
 }
+.foot{
+    width: 100%;
+    margin-top: 20rpx;
+    display: flex;
+    flex-direction: row;
+}
+
+.foot text{
+    margin: 0px auto;
+    font-size: 20rpx;
+    color: #5e5e5e;
+}

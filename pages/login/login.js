@@ -8,12 +8,27 @@ Page({
 
     },
 
-    onGotUserInfo: function(e) {
+    onGotUserInfo: function (e) {
+        var that = this;
+        wx.login({
+            success: function (res) {
+                //发起网络请求
+                wx.request({
+                    url: 'https://api.it120.cc/jimpdo/api/transmit/652',
+                    data: {
+                        js_code: res.code
+                    },
+                    success: function (res) {
+                        console.log(res);
+                        that.setData({
+                            openid: res.data.data.openid
+                        });
+                    }
+                });
+            }
+        });
         if (e.detail.userInfo) {
             wx.setStorageSync('userInfo', e.detail.userInfo);
-            // wx.request({
-            //     url: '',
-            // })
             wx.switchTab({
                 url: '../../pages/index/index',
             })

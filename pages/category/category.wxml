@@ -2,7 +2,7 @@
     <!-- left aside -->
     <view class="aside flex-wrap flex-direction-col">
         <block wx:for="{{navList}}" wx:key="id">
-            <text class="type-nav {{curNav == item.id ? 'selected' : ''}}" bindtap="selectNav" data-index="{{index}}" data-id="{{item.id}}">{{item.name}}</text>
+            <text class="type-nav {{curNav == item.id ? 'selected' : ''}}" bindtap="selectNav" data-id="{{item.id}}">{{item.name}}</text>
         </block>
     </view>
 
@@ -10,19 +10,22 @@
     <view class='content flex-item'>
         <view wx:if="{{havgoods}}">
             <block wx:for="{{goodsList}}" wx:key="gId">
-        <navigator url="/pages/goods/goods?gId={{item.gId}}" hover-class="navigator-hover">
-                <view class="goods flex-wrap flex-direction-row">
-                    <view class="flex-item-left">
-                        <image src='{{item.gImage}}'></image>
+                <navigator url="/pages/goods/goods?gId={{item.gId}}" hover-class="navigator-hover">
+                    <view class="goods flex-wrap flex-direction-row">
+                        <view class="flex-item-left">
+                            <image src='{{item.gImage}}'></image>
+                        </view>
+                        <view class="flex-item-right">
+                            <text class="title">{{item.gName}}</text>
+                            <p>￥{{item.gPrice}}</p>
+                            <text class='oldPrice'>￥{{item.gOldPrice}}</text>
+                        </view>
                     </view>
-                    <view class="flex-item-right">
-                        <text class="title">{{item.gName}}</text>
-                        <p>￥{{item.gPrice}}</p>
-                        <text class='oldPrice'>￥{{item.gOldPrice}}</text>
-                    </view>
-                </view>
                 </navigator>
             </block>
+            <view class='foot' hidden='{{isBottom}}'>
+                <text>———————不要扯了，已经扯到底了———————</text>
+            </view>
         </view>
         <view class='no' wx:else>
             <text>sorry,该类目下暂时没有商品</text>
