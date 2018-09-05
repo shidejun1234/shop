@@ -2,18 +2,35 @@
 
 .personal_info{
     padding:20px 0;
-    background-color: #fff;
+    background-color: #ffffff;
 }
 .photo_wrap{
-    text-align: center;
+    width: 180rpx;
+    height: 180rpx;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 86rpx;
+}
+.photo_wrap:after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 0 0 10rpx 10rpx #fff inset;
+    border-radius: 86rpx;
 }
 .photo_wrap image{
-    width: 90px;
-    height: 90px;
-    border-radius: 45px;
+    width: 180rpx;
+    height: 180rpx;
+    border-radius: 90rpx;
 }
 .nickname{
-    margin-top: #fff;
     text-align: center;
     color: #696969;
 }

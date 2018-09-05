@@ -10,7 +10,7 @@ page {
     margin: 0 auto;
     text-align: center;
     position: relative;
-    background: #1c4817;
+    background: #1aaaa1;
 }
 
 .personal-info .s-image {
@@ -65,7 +65,7 @@ page {
 
 .time {
     padding: 16rpx 20rpx;
-    background: #1c4817;
+    background: #1aaaa1;
     display: flex;
     color: #fff;
 }
