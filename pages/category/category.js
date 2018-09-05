@@ -3,7 +3,7 @@ Page({
     data: {
         page: 1,
         curNav: 1,
-        havgoods: false,
+        havgoods: true,
         isBottom: true,
         navList: [{
                 id: 1,
@@ -41,7 +41,7 @@ Page({
     },
     selectNav(event) {
         var that = this;
-        var id = event.target.dataset.id;
+        var id = event.currentTarget.dataset.id;
         wx.request({
             url: 'https://api.it120.cc/jimpdo/api/transmit/651',
             data: {
