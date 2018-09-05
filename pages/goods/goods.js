@@ -209,7 +209,10 @@ Page({
             data: {
                 gId: options.gId
             },
-            success: function(res) {
+            success: function (res) {
+                wx.setNavigationBarTitle({
+                    title: res.data.data.gName
+                })
                 that.setData({
                     goods: res.data.data
                 });

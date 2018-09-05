@@ -16,7 +16,8 @@ Page({
         circular:true,
         category: [{
             'image': '../../images/qiandao.png',
-            'category': '签到'
+            'category': '签到',
+            'url':'../sign/sign'
         }, {
             'image': '../../images/youhuiquan.png',
             'category': '优惠券'

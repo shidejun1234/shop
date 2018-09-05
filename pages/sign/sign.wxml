@@ -1,0 +1,58 @@
+<!--pages/sign/sign.wxml-->
+<view class="personal-info">
+    <open-data class="s-image" type="userAvatarUrl"></open-data>
+    <view class="py-name">
+        <open-data type="userNickName"></open-data>
+    </view>
+    <view class="setUp">
+        <!--bindtap='toIntegral'  -->
+        <text class='setting-text'>积分:{{score}}</text>
+    </view>
+</view>
+<view class="calendar">
+    <view class="time">
+        <view>
+            <text class="t_blue">{{year}}</text>年
+            <text class="t_blue">{{month}}</text>月
+        </view>
+        <view style="text-align: right;">
+            本月已签到
+            <text class="t_red">{{calendarSignDay}}</text>天
+        </view>
+    </view>
+    <view class="weekName">
+        <view class="sunday">日</view>
+        <view class="monday">一</view>
+        <view class="tuesday">二</view>
+        <view class="wednesday">三</view>
+        <view class="thursday">四</view>
+        <view class="friday">五</view>
+        <view class="saturday">六</view>
+    </view>
+    <view class="week">
+
+        <!--填补空格-->
+        <view wx:for="{{nbsp}}">\n</view>
+
+        <!--开心循环日期-->
+        <!--过去的日期-->
+        <view wx:for="{{date-1}}" style="color:gainsboro;">
+            <text wx:if="{{item+1==calendarSignData[item+1]}}" style="color:red;font-size:22rpx;">已签到</text>
+            <text wx:else="">{{item+1}}</text>
+        </view>
+
+        <!--过去的日期-->
+        <view style="padding-bottom:8rpx;">
+            <text wx:if="{{date==calendarSignData[date]}}" style="color:red;font-size:22rpx;  border-radius: 50%;background-color:ghostwhite;font-size:40rpx;">+1</text>
+            <text wx:else="" style="color:#f34343;">{{date}}</text>
+        </view>
+        <!--现在的日期-->
+        <view wx:for="{{monthDaySize-date}}">{{item+date+1}}</view>
+    </view>
+    <!--签到-->
+    <view class="calendarSign">
+        <button wx:if="{{date!=calendarSignData[date]}}" style="color:white;background-color:#1AAD19;" bindtap="calendarSign">签到</button>
+        <button wx:else="" disabled='true'>今日已签到</button>
+    </view>
+
+</view>

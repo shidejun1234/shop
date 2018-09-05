@@ -1,7 +1,7 @@
 {
     "pages": [
-        "pages/car/car",
         "pages/index/index",
+        "pages/car/car",
         "pages/category/category",
         "pages/goods/goods",
         "pages/store/store",
@@ -9,7 +9,8 @@
         "pages/login/login",
         "pages/search/search",
         "pages/pay/pay",
-        "pages/pay2/pay2"
+        "pages/pay2/pay2",
+        "pages/sign/sign"
     ],
     "window": {
         "navigationBarBackgroundColor": "#1aaaa1",

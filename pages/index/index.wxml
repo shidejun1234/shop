@@ -4,7 +4,7 @@
         <input placeholder='请搜索商品' name='key'></input>
         <button form-type='submit'>
         </button>
-            <image src='../../images/search.png'></image>
+        <image src='../../images/search.png'></image>
     </view>
 </form>
 <!-- 顶部滚动条 -->
@@ -20,8 +20,10 @@
 <!-- 分类 -->
 <view class='category'>
     <view class='category-item' wx:for="{{category}}" wx:key="category">
-        <image src='{{item.image}}' mode='widthFix'></image>
-        <text>{{item.category}}</text>
+        <navigator url="{{item.url}}" hover-class="navigator-hover">
+            <image src='{{item.image}}' mode='widthFix'></image>
+            <text>{{item.category}}</text>
+        </navigator>
     </view>
 </view>
 <view style='text-align:center;margin-top:5rpx;background:#ffffff;'>

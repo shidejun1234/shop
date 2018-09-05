@@ -1,0 +1,119 @@
+/* pages/sign/sign.wxss */
+
+page {
+    background: #fff;
+}
+
+.personal-info {
+    width: 750rpx;
+    height: 200rpx;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    background: #1c4817;
+}
+
+.personal-info .s-image {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    position: absolute;
+    z-index: 99;
+    top: 60rpx;
+    left: 30rpx;
+}
+
+.personal-info .py-name {
+    width: 660rpx;
+    box-sizing: border-box;
+    position: absolute;
+    text-align: left;
+    z-index: 90;
+    top: 60rpx;
+    left: 90rpx;
+    height: 120rpx;
+    line-height: 120rpx;
+    padding-left: 80rpx;
+    background-color: rgba(255, 255, 255, 0.32);
+}
+
+.personal-info .setUp {
+    width: 180rpx;
+    height: 120rpx;
+    line-height: 120rpx;
+    position: absolute;
+    z-index: 99;
+    top: 60rpx;
+    right: 30rpx;
+    font-size: 32rpx;
+    color: #851e17;
+}
+
+/*
+* 日历
+*/
+
+.t_red {
+    color: #f34343;
+}
+
+.t_blue {
+    color: #fff;
+}
+
+.time {
+    padding: 16rpx 20rpx;
+    background: #1c4817;
+    display: flex;
+    color: #fff;
+}
+
+.time view {
+    flex: 1;
+    font-size: 30rpx;
+}
+
+.time view text {
+    font-size: 38rpx;
+}
+
+.weekName {
+    background-color: gainsboro;
+    width: 100%;
+    display: flex;
+    padding: 16rpx 0;
+}
+
+.weekName view {
+    flex: 1;
+    text-align: center;
+}
+
+.sunday, .saturday {
+    color: #f34343;
+}
+
+.week {
+    width: 100%;
+}
+
+.week view {
+    width: 14.2%;
+    height: 80rpx;
+    line-height: 80rpx;
+    display: inline-block;
+    margin: 20rpx 0;
+    text-align: center;
+}
+
+.week view text {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+.calendarSign {
+    margin: 20rpx;
+}
